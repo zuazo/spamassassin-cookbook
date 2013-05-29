@@ -84,8 +84,7 @@ when 'debian', 'ubuntu'
       :enabled => node['onddo-spamassassin']['spamd']['enabled'],
       :options => options,
       :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
-      :nice => node['onddo-spamassassin']['spamd']['nice'],
-      :cron => node['onddo-spamassassin']['spamd']['cron']
+      :nice => node['onddo-spamassassin']['spamd']['nice']
     )
     notifies :restart, 'service[spamassassin]'
   end
