@@ -17,10 +17,28 @@
 # limitations under the License.
 #
 
+user node['onddo-spamassassin']['spamd']['user'] do
+  comment 'SpamAssassin Daemon'
+  home node['onddo-spamassassin']['spamd']['lib_path']
+  shell '/bin/false'
+  system true
+end
+
+group node['onddo-spamassassin']['spamd']['group'] do
+  members [ node['onddo-spamassassin']['spamd']['user'] ]
+  system true
+  append true
+end
+
+node.default['onddo-spamassassin']['spamd']['options'] = node['onddo-spamassassin']['spamd']['options'] + [
+  "--username=#{node['onddo-spamassassin']['spamd']['user']}",
+  "--groupname=#{node['onddo-spamassassin']['spamd']['group']}",
+]
+
 execute 'sa-update' do
   case node['platform']
   when 'debian', 'ubuntu'
-    command 'sa-update --gpghomedir /var/lib/spamassassin/sa-update-keys'
+    command "sa-update --gpghomedir #{node['onddo-spamassassin']['spamd']['lib_path']}/sa-update-keys"
   else
     command 'sa-update --no-gpg'
   end
@@ -32,11 +50,13 @@ package 'spamassassin' do
   notifies :run, 'execute[sa-update]'
 end
 
+options = node['onddo-spamassassin']['spamd']['options']
+
 case node['platform']
 when 'redhat','centos','scientific','fedora','suse','amazon' then
 
-  unless node['onddo-spamassassin']['spamd']['options'].include?('--daemonize')
-    node.normal['onddo-spamassassin']['spamd']['options'] = node['onddo-spamassassin']['spamd']['options'] + [ '--daemonize' ]
+  unless options.include?('--daemonize')
+    options = options + [ '--daemonize' ]
   end
 
   template '/etc/sysconfig/spamassassin' do
@@ -45,7 +65,7 @@ when 'redhat','centos','scientific','fedora','suse','amazon' then
     group 'root'
     mode '00644'
     variables(
-      :options => node['onddo-spamassassin']['spamd']['options'],
+      :options => options,
       :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
       :nice => node['onddo-spamassassin']['spamd']['nice']
     )
@@ -62,7 +82,7 @@ when 'debian', 'ubuntu'
     mode '00644'
     variables(
       :enabled => node['onddo-spamassassin']['spamd']['enabled'],
-      :options => node['onddo-spamassassin']['spamd']['options'],
+      :options => options,
       :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
       :nice => node['onddo-spamassassin']['spamd']['nice'],
       :cron => node['onddo-spamassassin']['spamd']['cron']
@@ -70,6 +90,17 @@ when 'debian', 'ubuntu'
     notifies :restart, 'service[spamassassin]'
   end
 
+end
+
+execute 'fix-spamd-lib-owner' do
+  command "chown -R '#{node['onddo-spamassassin']['spamd']['user']}:#{node['onddo-spamassassin']['spamd']['group']}' '#{node['onddo-spamassassin']['spamd']['lib_path']}'"
+  action :nothing
+end
+
+directory node['onddo-spamassassin']['spamd']['lib_path'] do
+  owner node['onddo-spamassassin']['spamd']['user']
+  group node['onddo-spamassassin']['spamd']['group']
+  notifies :run, 'execute[fix-spamd-lib-owner]', :immediately
 end
 
 template '/etc/mail/spamassassin/local.cf' do

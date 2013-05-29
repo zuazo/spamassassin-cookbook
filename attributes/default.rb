@@ -8,6 +8,9 @@ else
   default['onddo-spamassassin']['spamd']['path'] = '/usr/sbin/spamd'
 end
 
+default['onddo-spamassassin']['spamd']['user'] = 'spamd'
+default['onddo-spamassassin']['spamd']['group'] = 'spamd'
+default['onddo-spamassassin']['spamd']['lib_path'] = '/var/lib/spamassassin'
 default['onddo-spamassassin']['spamd']['enabled'] = true
 
 #
@@ -21,5 +24,4 @@ default['onddo-spamassassin']['spamd']['options'] = [
 ]
 default['onddo-spamassassin']['spamd']['pidfile'] = '/var/run/spamd.pid'
 default['onddo-spamassassin']['spamd']['nice'] = nil
-default['onddo-spamassassin']['spamd']['cron'] = false # debian specific
 
