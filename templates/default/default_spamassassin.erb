@@ -7,7 +7,7 @@
 # There may be security risks.
 
 # Change to one to enable spamd
-ENABLED=<%= node['onddo-spamassassin']['enabled'] ? '1' : '0' %>
+ENABLED=<%= @enabled ? '1' : '0' %>
 
 # Options
 # See man spamd for possible options. The -d option is automatically added.
@@ -16,17 +16,17 @@ ENABLED=<%= node['onddo-spamassassin']['enabled'] ? '1' : '0' %>
 # make sure --max-children is not set to anything higher than 5,
 # unless you know what you're doing.
 
-OPTIONS="<%= node['onddo-spamassassin']['options'].join(' ') %>"
+OPTIONS="<%= @options.join(' ') %>"
 
 # Pid file
 # Where should spamd write its PID to file? If you use the -u or
 # --username option above, this needs to be writable by that user.
 # Otherwise, the init script will not be able to shut spamd down.
-PIDFILE="<%= node['onddo-spamassassin']['pidfile'] %>"
+PIDFILE="<%= @pidfile %>"
 
 # Set nice level of spamd
-<% unless node['onddo-spamassassin']['nice'].nil? -%>
-NICE="--nicelevel <%= node['onddo-spamassassin']['nice'] %>"
+<% unless @nice.nil? -%>
+NICE="--nicelevel <%= @nice %>"
 <% else -%>
 #NICE="--nicelevel 15"
 <% end -%>
@@ -34,4 +34,4 @@ NICE="--nicelevel <%= node['onddo-spamassassin']['nice'] %>"
 # Cronjob
 # Set to anything but 0 to enable the cron job to automatically update
 # spamassassin's rules on a nightly basis
-CRON=<%= node['onddo-spamassassin']['cron'] ? '1' : '0' %>
+CRON=<%= @cron ? '1' : '0' %>

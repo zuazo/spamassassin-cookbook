@@ -25,7 +25,14 @@ template '/etc/default/spamassassin' do
   owner 'root'
   group 'root'
   mode '00644'
-  notifies :restart, 'service[spamassassin']
+  variables(
+    :enabled => node['onddo-spamassassin']['spamd']['enabled'],
+    :options => node['onddo-spamassassin']['spamd']['options'],
+    :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
+    :nice => node['onddo-spamassassin']['spamd']['nice'],
+    :cron => node['onddo-spamassassin']['spamd']['cron']
+  )
+  notifies :restart, 'service[spamassassin]'
 end
 
 service 'spamassassin' do
