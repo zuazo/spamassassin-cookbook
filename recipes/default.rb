@@ -59,6 +59,17 @@ when 'debian', 'ubuntu'
 
 end
 
+template '/etc/mail/spamassassin/local.cf' do
+  source 'local.cf.erb'
+  owner 'root'
+  group 'root'
+  mode '00644'
+  variables(
+    :conf => node['onddo-spamassassin']['conf']
+  )
+  notifies :restart, 'service[spamassassin]'
+end
+
 if node['onddo-spamassassin']['spamd']['enabled']
   service 'spamassassin' do
     supports :restart => true, :reload => true, :status => true
@@ -66,7 +77,7 @@ if node['onddo-spamassassin']['spamd']['enabled']
   end
 else
   service 'spamassassin' do
-    supports :restart => true, :reload => true, :status => true
+    supports :restart => true, :reload => false, :status => true
     action [ :disable, :stop ]
   end
 end
