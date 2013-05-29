@@ -17,7 +17,19 @@
 # limitations under the License.
 #
 
-package 'spamassassin'
+execute 'sa-update' do
+  case node['platform']
+  when 'debian', 'ubuntu'
+    command 'sa-update --gpghomedir /var/lib/spamassassin/sa-update-keys'
+  else
+    command 'sa-update --no-gpg'
+  end
+  action :nothing
+end
+
+package 'spamassassin' do
+  notifies :run, 'execute[sa-update]'
+end
 
 case node['platform']
 when 'redhat','centos','scientific','fedora','suse','amazon' then
