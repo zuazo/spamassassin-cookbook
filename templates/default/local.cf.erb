@@ -75,10 +75,12 @@ bayes_auto_learn <%= Onddo::SpamAssassin::Conf.value(@conf['bayes_auto_learn']) 
 bayes_ignore_header <%= bayes_ignore_header %>
 <% end -%>
 
-<% @conf['plugins'].sort.each do |plugin, values_ary| -%>
+<% @conf['plugins'].to_hash.sort.each do |plugin, values_ary| -%>
 ifplugin Mail::SpamAssassin::Plugin::<%= plugin.capitalize %>
-<%   values_ary.each do |values| -%>
-<%     values.sort.each do |option, value| -%>
+<%   next unless values_ary.kind_of?(Array)
+     values_ary.each do |values| -%>
+<%     next unless values.kind_of?(Hash)
+       values.sort.each do |option, value| -%>
   <%=    plugin.downcase %> <%= option.upcase %> <%= value %>
 <%     end
      end
