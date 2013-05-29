@@ -18,25 +18,56 @@
 #
 
 package 'spamassassin'
-package 'spamc'
 
-template '/etc/default/spamassassin' do
-  source 'default_spamassassin.erb'
-  owner 'root'
-  group 'root'
-  mode '00644'
-  variables(
-    :enabled => node['onddo-spamassassin']['spamd']['enabled'],
-    :options => node['onddo-spamassassin']['spamd']['options'],
-    :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
-    :nice => node['onddo-spamassassin']['spamd']['nice'],
-    :cron => node['onddo-spamassassin']['spamd']['cron']
-  )
-  notifies :restart, 'service[spamassassin]'
+case node['platform']
+when 'redhat','centos','scientific','fedora','suse','amazon' then
+
+  unless node['onddo-spamassassin']['spamd']['options'].include?('--daemonize')
+    node.normal['onddo-spamassassin']['spamd']['options'] = node['onddo-spamassassin']['spamd']['options'] + [ '--daemonize' ]
+  end
+
+  template '/etc/sysconfig/spamassassin' do
+    source 'sysconfig_spamassassin.erb'
+    owner 'root'
+    group 'root'
+    mode '00644'
+    variables(
+      :options => node['onddo-spamassassin']['spamd']['options'],
+      :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
+      :nice => node['onddo-spamassassin']['spamd']['nice']
+    )
+    notifies :restart, 'service[spamassassin]'
+  end
+
+when 'debian', 'ubuntu'
+  package 'spamc'
+
+  template '/etc/default/spamassassin' do
+    source 'default_spamassassin.erb'
+    owner 'root'
+    group 'root'
+    mode '00644'
+    variables(
+      :enabled => node['onddo-spamassassin']['spamd']['enabled'],
+      :options => node['onddo-spamassassin']['spamd']['options'],
+      :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
+      :nice => node['onddo-spamassassin']['spamd']['nice'],
+      :cron => node['onddo-spamassassin']['spamd']['cron']
+    )
+    notifies :restart, 'service[spamassassin]'
+  end
+
 end
 
-service 'spamassassin' do
-  supports :restart => true, :reload => true, :status => true
-  action [ :enable, :start ]
+if node['onddo-spamassassin']['spamd']['enabled']
+  service 'spamassassin' do
+    supports :restart => true, :reload => true, :status => true
+    action [ :enable, :start ]
+  end
+else
+  service 'spamassassin' do
+    supports :restart => true, :reload => true, :status => true
+    action [ :disable, :stop ]
+  end
 end
 
