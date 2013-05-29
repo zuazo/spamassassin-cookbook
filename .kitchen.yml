@@ -31,5 +31,5 @@ platforms:
 
 suites:
 - name: default
-  run_list: ["recipe[onddo-spamassassin]"]
+  run_list: ["recipe[onddo-spamassassin_test]"]
   attributes: {}
