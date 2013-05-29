@@ -25,6 +25,7 @@ execute 'sa-update' do
     command 'sa-update --no-gpg'
   end
   action :nothing
+  notifies :restart, 'service[spamassassin]'
 end
 
 package 'spamassassin' do
