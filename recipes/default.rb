@@ -16,3 +16,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+package 'spamassassin'
+package 'spamc'
+
+template '/etc/default/spamassassin' do
+  source 'default_spamassassin.erb'
+  owner 'root'
+  group 'root'
+  mode '00644'
+  notifies :restart, 'service[spamassassin']
+end
+
+service 'spamassassin' do
+  supports :restart => true, :reload => true, :status => true
+  action [ :enable, :start ]
+end
+
