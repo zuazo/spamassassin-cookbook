@@ -71,7 +71,7 @@ bayes_auto_learn <%= Onddo::SpamAssassin::Conf.value(@conf['bayes_auto_learn']) 
 # bayes_ignore_header X-Bogosity
 # bayes_ignore_header X-Spam-Flag
 # bayes_ignore_header X-Spam-Status
-<% @conf['bayes_ignore_header'].each do |bayes_ignore_header| -%>
+<% @conf['bayes_ignore_headers'].each do |bayes_ignore_header| -%>
 bayes_ignore_header <%= bayes_ignore_header %>
 <% end -%>
 
