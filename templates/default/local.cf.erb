@@ -9,7 +9,7 @@
 #
 ###########################################################################
 
-<% @conf['rewrite_header'].each do |rewrite_header|
+<% @conf['rewrite_headers'].each do |rewrite_header|
      rewrite_header.sort.each do |header, value|
 -%>
 rewrite_header <%= header %> <%= value %>

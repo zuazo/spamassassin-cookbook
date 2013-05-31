@@ -1,5 +1,5 @@
 
-default['onddo-spamassassin']['conf']['rewrite_header'] = [
+default['onddo-spamassassin']['conf']['rewrite_headers'] = [
   'Subject' => '[SPAM]',
 ]
 
