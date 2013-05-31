@@ -14,7 +14,7 @@ The following platforms have been tested:
 * Debian
 * Ubuntu
 
-Let me know if you use it succesfully on any other platform.
+Let me know if you use it successfully on any other platform.
 
 Attributes
 ==========
