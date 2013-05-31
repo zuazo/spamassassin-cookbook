@@ -154,6 +154,14 @@ Recipes
 
 Installs SpamAssassin client and Daemon.
 
+Usage Example
+=============
+
+```ruby
+node.default['onddo-spamassassin']['conf']['required_score'] = 4 # is set to 5 by default
+include_recipe 'onddo-spamassassin::default' # or include it in your run-list
+```
+
 Testing
 =======
 
