@@ -8,7 +8,7 @@ Requirements
 
 ## Platform
 
-The following platforms and versions have been tested:
+The following platforms have been tested:
 
 * Centos
 * Debian
@@ -174,9 +174,9 @@ Testing
 
 ## Running the tests
 
-``bash
+```bash
 $ kitchen test
-``
+```
 
 Contributing
 ============
