@@ -21,19 +21,19 @@ Attributes
 
 <table>
   <tr>
-    <td>Attribute</td>
-    <td>Description</td>
-    <td>Default</td>
+    <th>Attribute</th>
+    <th>Description</th>
+    <th>Default</th>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamc']['path']</code></td>
     <td>SpamAssassin client binary path</td>
-    <td><i>calculated</i></td>
+    <td><em>calculated</em></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['path']</code></td>
     <td>SpamAssassin daemon binary path</td>
-    <td><i>calculated</i></td>
+    <td><em>calculated</em></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['user']</code></td>
@@ -48,7 +48,7 @@ Attributes
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['lib_path']</code></td>
     <td>SpamAssassin group</td>
-    <td><i>calculated</i></td>
+    <td><em>calculated</em></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['enabled']</code></td>
