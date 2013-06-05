@@ -41,14 +41,14 @@ attribute 'onddo-spamassassin/spamd/user',
   :description => 'SpamAssassin user',
   :type => 'string',
   :required => 'optional',
-  :default => 'sapmd'
+  :default => '"spamd"'
 
 attribute 'onddo-spamassassin/spamd/group',
   :display_name => 'spamd group',
   :description => 'SpamAssassin group',
   :type => 'string',
   :required => 'optional',
-  :default => 'sapmd'
+  :default => '"spamd"'
 
 attribute 'onddo-spamassassin/spamd/lib_path',
   :display_name => 'spamd group',
@@ -81,7 +81,7 @@ attribute 'onddo-spamassassin/spamd/pidfile',
   :description => 'SpamAssassin daemon pid file',
   :type => 'string',
   :required => 'optional',
-  :default => '/var/run/spamd.pid'
+  :default => '"/var/run/spamd.pid"'
 
 attribute 'onddo-spamassassin/spamd/nice',
   :display_name => 'spamd nice',
@@ -124,7 +124,7 @@ attribute 'onddo-spamassassin/conf/lock_method',
   :choice => [ 'nfssafe', 'flock', 'win32' ],
   :type => 'string',
   :required => 'optional',
-  :default => 'flock'
+  :default => '"flock"'
 
 attribute 'onddo-spamassassin/conf/required_score',
   :display_name => 'Required score',

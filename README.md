@@ -38,12 +38,12 @@ Attributes
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['user']</code></td>
     <td>SpamAssassin user</td>
-    <td><code>sapmd</code></td>
+    <td><code>"spamd"</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['group']</code></td>
     <td>SpamAssassin group</td>
-    <td><code>sapmd</code></td>
+    <td><code>"spamd"</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['lib_path']</code></td>
@@ -67,7 +67,7 @@ Attributes
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['pidfile']</code></td>
     <td>SpamAssassin daemon pid file</td>
-    <td><code>/var/run/spamd.pid</code></td>
+    <td><code>"/var/run/spamd.pid"</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['nice']</code></td>
@@ -96,7 +96,7 @@ Attributes
   <tr>
     <td><code>node['onddo-spamassassin']['conf']['lock_method']</code></td>
     <td>File-locking method used to protect database files on-disk</td>
-    <td><code>flock</code></td>
+    <td><code>"flock"</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['conf']['required_score']</code></td>
