@@ -121,7 +121,7 @@ attribute 'onddo-spamassassin/conf/trusted_networks',
 attribute 'onddo-spamassassin/conf/lock_method',
   :display_name => 'File-lock method',
   :description => 'File-locking method used to protect database files on-disk',
-  :choice => [ 'nfssafe', 'flock', 'win32' ],
+  :choice => [ '"nfssafe"', '"flock"', '"win32"' ],
   :type => 'string',
   :required => 'optional',
   :default => '"flock"'
