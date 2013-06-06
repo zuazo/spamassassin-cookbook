@@ -1,14 +1,14 @@
 Description
 ===========
 
-Installs and configures Spamassassin.
+Installs and configures [SpamAssassin](http://spamassassin.apache.org/), a mail filter software to identify spam.
 
 Requirements
 ============
 
 ## Platform
 
-The following platforms have been tested:
+This cookbook has been tested on the following platforms:
 
 * Centos
 * Debian
@@ -154,12 +154,40 @@ Recipes
 
 Installs SpamAssassin client and Daemon.
 
-Usage Example
-=============
+Usage Examples
+==============
+
+## Including in a Cookbook Recipe
+
+Running it from a recipe:
 
 ```ruby
 node.default['onddo-spamassassin']['conf']['required_score'] = 4 # is set to 5 by default
 include_recipe 'onddo-spamassassin::default' # or include it in your run-list
+```
+
+Don't forget to include the `onddo-spamassassin` cookbook as a dependency in the metadata.
+
+```ruby
+# metadata.rb
+[...]
+
+depends 'onddo-spamassassin'
+```
+
+## Including in the Run List
+
+Another alternative is to include the default recipe in your *Run List*.
+
+```json
+{
+  "name": "mail.onddo.com",
+  [...]
+  "run_list": [
+    [...]
+    "recipe[onddo-spamassassin]"
+  ]
+}
 ```
 
 Testing
@@ -176,6 +204,8 @@ Testing
 
 ```bash
 $ kitchen test
+$ kitchen verify
+[...]
 ```
 
 Contributing
