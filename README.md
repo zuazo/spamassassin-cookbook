@@ -10,7 +10,7 @@ Requirements
 
 This cookbook has been tested on the following platforms:
 
-* Centos
+* CentOS
 * Debian
 * Ubuntu
 
