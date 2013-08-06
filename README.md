@@ -91,7 +91,7 @@ Attributes
   <tr>
     <td><code>node['onddo-spamassassin']['conf']['trusted_networks']</code></td>
     <td>Network or hosts that are considered trusted</td>
-    <td><code>true</code></td>
+    <td><code>nil</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['conf']['lock_method']</code></td>

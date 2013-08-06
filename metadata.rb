@@ -116,7 +116,7 @@ attribute 'onddo-spamassassin/conf/trusted_networks',
   :description => 'Network or hosts that are considered trusted',
   :type => 'string',
   :required => 'optional',
-  :default => 'true'
+  :default => 'nil'
 
 attribute 'onddo-spamassassin/conf/lock_method',
   :display_name => 'File-lock method',
