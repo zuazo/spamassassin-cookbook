@@ -129,5 +129,10 @@ end
 execute 'Disable daemon in systemd SpamAssasin service (monkey-patch)' do
   command 'sed -i "s/^\(SPAMDOPTIONS=.*\) \(--daemonize\|-d\)/\1/" /etc/sysconfig/spamassassin'
   only_if 'grep -e " --daemonize\| -d" /etc/sysconfig/spamassassin'
+  only_if do # spamd uses systemd
+    ::File.exist?(
+      '/etc/systemd/system/multi-user.target.wants/spamassassin.service'
+    )
+  end
   notifies :restart, 'service[spamassassin]'
 end
