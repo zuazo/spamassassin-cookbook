@@ -7,15 +7,17 @@ Installs and configures [SpamAssassin](http://spamassassin.apache.org/), a mail 
 Requirements
 ============
 
-## Platform
+## Supported Platforms
 
 This cookbook has been tested on the following platforms:
 
+* Amazon Linux
 * CentOS
 * Debian
+* Fedora
 * Ubuntu
 
-Let me know if you use it successfully on any other platform.
+Please, [let us know](https://github.com/onddo/spamassassin-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
 Attributes
 ==========
@@ -194,30 +196,19 @@ Another alternative is to include the default recipe in your *Run List*.
 Testing
 =======
 
-## Requirements
-
-* `vagrant`
-* `berkshelf` >= `1.4.0`
-* `test-kitchen` >= `1.0.0.alpha`
-* `kitchen-vagrant` >= `0.10.0`
-
-## Running the tests
-
-```bash
-$ kitchen test
-$ kitchen verify
-[...]
-```
+See [TESTING.md](https://github.com/onddo/spamassassin-cookbook/blob/master/TESTING.md).
 
 Contributing
 ============
 
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+Please do not hesitate to [open an issue](https://github.com/onddo/spamassassin-cookbook/issues/new) with any questions or problems.
+
+See [CONTRIBUTING.md](https://github.com/onddo/spamassassin-cookbook/blob/master/CONTRIBUTING.md).
+
+TODO
+====
+
+See [TODO.md](https://github.com/onddo/spamassassin-cookbook/blob/master/TODO.md).
 
 
 License and Author
@@ -226,18 +217,17 @@ License and Author
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
 | **Author:**          | Xabier de Zuazo (<xabier@onddo.com>)
-| **Copyright:**       | Copyright (c) 2013 Onddo Labs, SL. (www.onddo.com)
+| **Copyright:**       | Copyright (c) 2013-2014 Onddo Labs, SL. (www.onddo.com)
 | **License:**         | Apache License, Version 2.0
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    
+        http://www.apache.org/licenses/LICENSE-2.0
+    
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
