@@ -1,5 +1,6 @@
 Description
 ===========
+[![Cookbook Version](https://img.shields.io/cookbook/v/onddo-spamassassin.svg?style=flat)](https://supermarket.getchef.com/cookbooks/onddo-spamassassin)
 
 Installs and configures [SpamAssassin](http://spamassassin.apache.org/), a mail filter software to identify spam.
 
