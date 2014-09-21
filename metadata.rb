@@ -6,8 +6,10 @@ description      'Installs and configures SpamAssassin, a mail filter software t
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.2.0' # WiP
 
+supports 'amazon'
 supports 'centos'
 supports 'debian'
+supports 'fedora'
 supports 'ubuntu'
 
 recipe 'onddo-spamassassin::default', 'Installs SpamAssassin client and Daemon'
