@@ -55,10 +55,6 @@ options = node['onddo-spamassassin']['spamd']['options']
 case node['platform']
 when 'redhat','centos','scientific','fedora','suse','amazon' then
 
-  unless options.include?('--daemonize')
-    options = options + [ '--daemonize' ]
-  end
-
   template '/etc/sysconfig/spamassassin' do
     source 'sysconfig_spamassassin.erb'
     owner 'root'
@@ -123,19 +119,4 @@ else
     supports :restart => true, :reload => false, :status => true
     action [ :disable, :stop ]
   end
-end
-
-# https://bugzilla.redhat.com/show_bug.cgi?id=1081992
-execute 'Disable daemon in systemd SpamAssasin service (monkey-patch)' do
-  command 'sed -i "s/^\(SPAMDOPTIONS=.*\) \(--daemonize\|-d\)/\1/" '\
-          '/etc/sysconfig/spamassassin'
-  only_if 'grep -q -e " --daemonize\| -d" /etc/sysconfig/spamassassin'
-  only_if do # spamd uses systemd
-    ::File.exist?(
-      '/etc/systemd/system/multi-user.target.wants/spamassassin.service'
-    )
-  end
-  not_if 'grep -q "^\s*Type=forking" '\
-         '/etc/systemd/system/multi-user.target.wants/spamassassin.service'
-  notifies :restart, 'service[spamassassin]'
 end
