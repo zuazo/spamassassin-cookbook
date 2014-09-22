@@ -13,6 +13,10 @@ group :style do
   gem 'foodcritic', '~> 4.0'
 end
 
+group :unit do
+  gem 'chefspec', '~> 4.0'
+end
+
 group :integration do
   gem 'vagrant-wrapper'
   gem 'test-kitchen', '~> 1.2'
