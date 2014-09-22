@@ -127,12 +127,15 @@ end
 
 # https://bugzilla.redhat.com/show_bug.cgi?id=1081992
 execute 'Disable daemon in systemd SpamAssasin service (monkey-patch)' do
-  command 'sed -i "s/^\(SPAMDOPTIONS=.*\) \(--daemonize\|-d\)/\1/" /etc/sysconfig/spamassassin'
-  only_if 'grep -e " --daemonize\| -d" /etc/sysconfig/spamassassin'
+  command 'sed -i "s/^\(SPAMDOPTIONS=.*\) \(--daemonize\|-d\)/\1/" '\
+          '/etc/sysconfig/spamassassin'
+  only_if 'grep -q -e " --daemonize\| -d" /etc/sysconfig/spamassassin'
   only_if do # spamd uses systemd
     ::File.exist?(
       '/etc/systemd/system/multi-user.target.wants/spamassassin.service'
     )
   end
+  not_if 'grep -q "^\s*Type=forking" '\
+         '/etc/systemd/system/multi-user.target.wants/spamassassin.service'
   notifies :restart, 'service[spamassassin]'
 end
