@@ -10,6 +10,7 @@ supports 'amazon'
 supports 'centos'
 supports 'debian'
 supports 'fedora'
+supports 'redhat'
 supports 'ubuntu'
 
 recipe 'onddo-spamassassin::default', 'Installs SpamAssassin client and Daemon'
