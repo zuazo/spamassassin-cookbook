@@ -9,7 +9,7 @@ platforms:
 - name: centos-5.10
 - name: centos-6.5
 - name: centos-7.0
-- name: debian-6.0
+- name: debian-6.0.10
   run_list: ["recipe[apt]"]
 - name: debian-7.6
   run_list: ["recipe[apt]"]
