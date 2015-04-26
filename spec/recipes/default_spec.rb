@@ -20,7 +20,7 @@
 require 'spec_helper'
 
 describe 'onddo-spamassassin::default' do
-  let(:chef_runner) { ChefSpec::Runner.new }
+  let(:chef_runner) { ChefSpec::SoloRunner.new }
   let(:chef_run) { chef_runner.converge(described_recipe) }
 
   it 'should create spamd user' do
