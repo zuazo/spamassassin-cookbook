@@ -20,14 +20,14 @@ rewrite_header <%= header %> <%= value %>
 #   Save spam messages as a message/rfc822 MIME attachment instead of
 #   modifying the original message (0: off, 2: use text/plain instead)
 #
-report_safe <%= Onddo::SpamAssassin::Conf.value(@conf['report_safe']) %>
+report_safe <%= SpamAssassinCookbook::Conf.value(@conf['report_safe']) %>
 
 
 #   Set which networks or hosts are considered 'trusted' by your mail
 #   server (i.e. not spammers)
 #
 <% unless @conf['trusted_networks'].nil? -%>
-trusted_networks <%= Onddo::SpamAssassin::Conf.value(@conf['trusted_networks']) %>
+trusted_networks <%= SpamAssassinCookbook::Conf.value(@conf['trusted_networks']) %>
 <% else -%>
 # trusted_networks 212.17.35.
 <% end -%>
@@ -36,7 +36,7 @@ trusted_networks <%= Onddo::SpamAssassin::Conf.value(@conf['trusted_networks']) 
 #   Set file-locking method (flock is not safe over NFS, but is faster)
 #
 <% unless @conf['lock_method'].nil? -%>
-lock_method <%= Onddo::SpamAssassin::Conf.value(@conf['lock_method']) %>
+lock_method <%= SpamAssassinCookbook::Conf.value(@conf['lock_method']) %>
 <% else -%>
 # lock_method flock
 <% end -%>
@@ -44,13 +44,13 @@ lock_method <%= Onddo::SpamAssassin::Conf.value(@conf['lock_method']) %>
 
 #   Set the threshold at which a message is considered spam (default: 5.0)
 #
-required_score <%= Onddo::SpamAssassin::Conf.value(@conf['required_score'].to_f) %>
+required_score <%= SpamAssassinCookbook::Conf.value(@conf['required_score'].to_f) %>
 
 
 #   Use Bayesian classifier (default: 1)
 #
 <% unless @conf['use_bayes'].nil? -%>
-use_bayes <%= Onddo::SpamAssassin::Conf.value(@conf['use_bayes']) %>
+use_bayes <%= SpamAssassinCookbook::Conf.value(@conf['use_bayes']) %>
 <% else -%>
 # use_bayes 1
 <% end -%>
@@ -59,7 +59,7 @@ use_bayes <%= Onddo::SpamAssassin::Conf.value(@conf['use_bayes']) %>
 #   Bayesian classifier auto-learning (default: 1)
 #
 <% unless @conf['bayes_auto_learn'].nil? -%>
-bayes_auto_learn <%= Onddo::SpamAssassin::Conf.value(@conf['bayes_auto_learn']) %>
+bayes_auto_learn <%= SpamAssassinCookbook::Conf.value(@conf['bayes_auto_learn']) %>
 <% else -%>
 # bayes_auto_learn 1
 <% end -%>

@@ -1,7 +1,7 @@
 # encoding: UTF-8
 #
 # Author:: Xabier de Zuazo (<xabier@onddo.com>)
-# Copyright:: Copyright (c) 2014 Onddo Labs, SL. (www.onddo.com)
+# Copyright:: Copyright (c) 2014-2015 Onddo Labs, SL. (www.onddo.com)
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,7 +59,6 @@ describe 'onddo-spamassassin::default' do
       resource = chef_run.template('/etc/sysconfig/spamassassin')
       expect(resource).to notify('service[spamassassin]').to(:restart).delayed
     end
-
   end # context on CentOS
 
   context 'on Ubuntu' do
@@ -80,7 +79,6 @@ describe 'onddo-spamassassin::default' do
       resource = chef_run.template('/etc/default/spamassassin')
       expect(resource).to notify('service[spamassassin]').to(:restart).delayed
     end
-
   end # context on Ubuntu
 
   it 'should create lib_path directory' do
@@ -118,7 +116,7 @@ describe 'onddo-spamassassin::default' do
       .with_supports(restart: true, reload: true, status: true)
   end
 
-  context 'in OpenSuse' do
+  context 'on OpenSuse' do
     let(:chef_runner) do
       ChefSpec::SoloRunner.new(platform: 'opensuse', version: '13.1')
     end

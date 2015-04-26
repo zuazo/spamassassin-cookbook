@@ -1,6 +1,6 @@
 Description
 ===========
-[![Cookbook Version](https://img.shields.io/cookbook/v/onddo-spamassassin.svg?style=flat)](https://supermarket.getchef.com/cookbooks/onddo-spamassassin)
+[![Cookbook Version](https://img.shields.io/cookbook/v/onddo-spamassassin.svg?style=flat)](https://supermarket.chef.io/cookbooks/onddo-spamassassin)
 [![Dependency Status](http://img.shields.io/gemnasium/onddo/spamassassin-cookbook.svg?style=flat)](https://gemnasium.com/onddo/spamassassin-cookbook)
 [![Build Status](http://img.shields.io/travis/onddo/spamassassin-cookbook.svg?style=flat)](https://travis-ci.org/onddo/spamassassin-cookbook)
 
@@ -24,6 +24,10 @@ This cookbook has been tested on the following platforms:
 
 Please, [let us know](https://github.com/onddo/spamassassin-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
+## Required Applications
+
+* Ruby `>= 1.9.3`
+
 Attributes
 ==========
 
@@ -46,12 +50,12 @@ Attributes
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['user']</code></td>
     <td>SpamAssassin user</td>
-    <td><code>"spamd"</code></td>
+    <td><code>'spamd'</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['group']</code></td>
     <td>SpamAssassin group</td>
-    <td><code>"spamd"</code></td>
+    <td><code>'spamd'</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['lib_path']</code></td>
@@ -67,15 +71,15 @@ Attributes
     <td><code>node['onddo-spamassassin']['spamd']['options']</code></td>
     <td>SpamAssassin daemon option arguments</td>
     <td><code>[<br/>
-      &nbsp;&nbsp;"--create-prefs",<br/>
-      &nbsp;&nbsp;"--max-children 5",<br/>
-      &nbsp;&nbsp;"--helper-home-dir"<br/>
+      &nbsp;&nbsp;'--create-prefs',<br/>
+      &nbsp;&nbsp;'--max-children 5',<br/>
+      &nbsp;&nbsp;'--helper-home-dir'<br/>
     ]</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['pidfile']</code></td>
     <td>SpamAssassin daemon pid file</td>
-    <td><code>"/var/run/spamd.pid"</code></td>
+    <td><code>'/var/run/spamd.pid'</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['spamd']['nice']</code></td>
@@ -87,7 +91,7 @@ Attributes
     <td>An array of rewrite headers</td>
     <td><code>[<br/>
       &nbsp;&nbsp;{<br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;"Subject" => "[SPAM]"<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;'Subject' => '[SPAM]'<br/>
       &nbsp;&nbsp;}<br/>
     ]</code></td>
   </tr>
@@ -104,7 +108,7 @@ Attributes
   <tr>
     <td><code>node['onddo-spamassassin']['conf']['lock_method']</code></td>
     <td>File-locking method used to protect database files on-disk</td>
-    <td><code>"flock"</code></td>
+    <td><code>'flock'</code></td>
   </tr>
   <tr>
     <td><code>node['onddo-spamassassin']['conf']['required_score']</code></td>
@@ -170,7 +174,8 @@ Usage Examples
 Running it from a recipe:
 
 ```ruby
-node.default['onddo-spamassassin']['conf']['required_score'] = 4 # is set to 5 by default
+# Required_score is set to 5 by default, change it:
+node.default['onddo-spamassassin']['conf']['required_score'] = 4
 include_recipe 'onddo-spamassassin::default' # or include it in your run-list
 ```
 
@@ -178,7 +183,7 @@ Don't forget to include the `onddo-spamassassin` cookbook as a dependency in the
 
 ```ruby
 # metadata.rb
-[...]
+# [...]
 
 depends 'onddo-spamassassin'
 ```
@@ -190,9 +195,8 @@ Another alternative is to include the default recipe in your *Run List*.
 ```json
 {
   "name": "mail.onddo.com",
-  [...]
+  "[...]": "[...]",
   "run_list": [
-    [...]
     "recipe[onddo-spamassassin]"
   ]
 }

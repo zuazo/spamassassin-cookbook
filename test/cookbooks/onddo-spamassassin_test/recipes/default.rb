@@ -1,8 +1,10 @@
+# encoding: UTF-8
 #
 # Cookbook Name:: onddo-spamassassin_test
 # Recipe:: default
-#
-# Copyright 2013, Onddo Labs, Sl.
+# Author:: Xabier de Zuazo (<xabier@onddo.com>)
+# Copyright:: Copyright (c) 2013-2015 Onddo Labs, SL. (www.onddo.com)
+# License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,8 +19,8 @@
 # limitations under the License.
 #
 
-node.default['onddo-spamassassin']['conf']['plugins']['shortcircuit'] = [
-  {
+node.default['onddo-spamassassin']['conf']['plugins']['shortcircuit'] =
+  [{
     'USER_IN_WHITELIST' => 'on',
     'USER_IN_DEF_WHITELIST' => 'on',
     'USER_IN_ALL_SPAM_TO' => 'on',
@@ -31,9 +33,7 @@ node.default['onddo-spamassassin']['conf']['plugins']['shortcircuit'] = [
     'ALL_TRUSTED' => 'on',
 
     'BAYES_99' => 'spam',
-    'BAYES_00' => 'ham',
-  }
-]
+    'BAYES_00' => 'ham'
+  }]
 
 include_recipe 'onddo-spamassassin'
-
