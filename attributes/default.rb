@@ -20,28 +20,28 @@
 #
 
 default['spamassassin']['spamc']['path'] = '/usr/bin/spamc'
-default['spamassassin']['spamd']['path'] =
-  case node['platform']
-  when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon'
-    '/usr/bin/spamd'
-  else
-    '/usr/sbin/spamd'
-  end
 
-default['spamassassin']['spamd']['service_name'] =
-  case node['platform']
-  when 'suse', 'opensuse'
-    'spamd'
-  else
-    'spamassassin'
-  end
+case node['platform_family']
+when 'fedora', 'rhel'
+  default['spamassassin']['spamd']['path'] = '/usr/bin/spamd'
+  default['spamassassin']['spamd']['service_name'] = 'spamassassin'
+  default['spamassassin']['spamd']['packages'] = %w(spamassassin)
+when 'suse'
+  default['spamassassin']['spamd']['path'] = '/usr/sbin/spamd'
+  default['spamassassin']['spamd']['service_name'] = 'spamd'
+  default['spamassassin']['spamd']['packages'] = %w(spamassassin)
+else
+  default['spamassassin']['spamd']['path'] = '/usr/sbin/spamd'
+  default['spamassassin']['spamd']['service_name'] = 'spamassassin'
+  default['spamassassin']['spamd']['packages'] = %w(spamassassin spamc)
+end
+
 default['spamassassin']['spamd']['user'] = 'spamd'
 default['spamassassin']['spamd']['group'] = 'spamd'
 default['spamassassin']['spamd']['lib_path'] = '/var/lib/spamassassin'
 default['spamassassin']['spamd']['enabled'] = true
 
-# TODO: /etc/default/spamassassin, /etc/sysconfig/spamassassin
-
+# Config options for: /etc/default/spamassassin, /etc/sysconfig/spamassassin
 default['spamassassin']['spamd']['options'] = [
   '--create-prefs',
   '--max-children 5',

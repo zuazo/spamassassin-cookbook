@@ -25,9 +25,7 @@ describe 'onddo-spamassassin::default' do
   let(:node) { chef_runner.node }
 
   context 'with the old attribute namespace' do
-    before do
-      node.set['onddo-spamassassin']['conf']['required_score'] = 4
-    end
+    before { node.set['onddo-spamassassin']['conf']['required_score'] = 4 }
 
     it 'prints the deprecated warning' do
       expect(Chef::Log).to receive(:warn).with(/DEPRECATED/)
@@ -62,46 +60,6 @@ describe 'onddo-spamassassin::default' do
   it 'installs spamassassin package' do
     expect(chef_run).to install_package('spamassassin')
   end
-
-  context 'on CentOS' do
-    before do
-      chef_runner.node.automatic['platform'] = 'centos'
-      chef_runner.node.automatic['platform_version'] = '5.10'
-    end
-
-    it 'creates sysconfig/spamassassin file' do
-      expect(chef_run).to create_template('/etc/sysconfig/spamassassin')
-        .with_source('sysconfig_spamassassin.erb')
-        .with_owner('root')
-        .with_group('root')
-        .with_mode('00644')
-    end
-
-    it 'sysconfig/spamassassin restarts spamassassin service' do
-      resource = chef_run.template('/etc/sysconfig/spamassassin')
-      expect(resource).to notify('service[spamassassin]').to(:restart).delayed
-    end
-  end # context on CentOS
-
-  context 'on Ubuntu' do
-    before do
-      chef_runner.node.automatic['platform'] = 'ubuntu'
-      chef_runner.node.automatic['platform_version'] = '12.04'
-    end
-
-    it 'creates default/spamassassin file' do
-      expect(chef_run).to create_template('/etc/default/spamassassin')
-        .with_source('default_spamassassin.erb')
-        .with_owner('root')
-        .with_group('root')
-        .with_mode('00644')
-    end
-
-    it 'default/spamassassin restarts spamassassin service' do
-      resource = chef_run.template('/etc/default/spamassassin')
-      expect(resource).to notify('service[spamassassin]').to(:restart).delayed
-    end
-  end # context on Ubuntu
 
   it 'creates lib_path directory' do
     expect(chef_run).to create_directory('/var/lib/spamassassin')
@@ -138,9 +96,60 @@ describe 'onddo-spamassassin::default' do
       .with_supports(restart: true, reload: true, status: true)
   end
 
+  context 'on CentOS' do
+    let(:chef_runner) do
+      ChefSpec::SoloRunner.new(platform: 'centos', version: '5.10')
+    end
+
+    it 'creates sysconfig/spamassassin file' do
+      expect(chef_run).to create_template('/etc/sysconfig/spamassassin')
+        .with_source('sysconfig_spamassassin.erb')
+        .with_owner('root')
+        .with_group('root')
+        .with_mode('00644')
+    end
+
+    it 'sysconfig/spamassassin restarts spamassassin service' do
+      resource = chef_run.template('/etc/sysconfig/spamassassin')
+      expect(resource).to notify('service[spamassassin]').to(:restart).delayed
+    end
+  end # context on CentOS
+
+  context 'on Ubuntu' do
+    let(:chef_runner) do
+      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04')
+    end
+
+    it 'creates default/spamassassin file' do
+      expect(chef_run).to create_template('/etc/default/spamassassin')
+        .with_source('default_spamassassin.erb')
+        .with_owner('root')
+        .with_group('root')
+        .with_mode('00644')
+    end
+
+    it 'default/spamassassin restarts spamassassin service' do
+      resource = chef_run.template('/etc/default/spamassassin')
+      expect(resource).to notify('service[spamassassin]').to(:restart).delayed
+    end
+  end # context on Ubuntu
+
   context 'on openSUSE' do
     let(:chef_runner) do
       ChefSpec::SoloRunner.new(platform: 'opensuse', version: '13.1')
+    end
+
+    it 'creates default/spamd file' do
+      expect(chef_run).to create_template('/etc/sysconfig/spamd')
+        .with_source('sysconfig_spamassassin.erb')
+        .with_owner('root')
+        .with_group('root')
+        .with_mode('00644')
+    end
+
+    it 'default/spamd restarts spamassassin service' do
+      resource = chef_run.template('/etc/sysconfig/spamd')
+      expect(resource).to notify('service[spamd]').to(:restart).delayed
     end
 
     it 'enables spamd service' do
@@ -152,5 +161,5 @@ describe 'onddo-spamassassin::default' do
       expect(chef_run).to start_service('spamd')
         .with_supports(restart: true, reload: true, status: true)
     end
-  end
+  end # context on openSUSE
 end

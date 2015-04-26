@@ -55,8 +55,8 @@ node.default['spamassassin']['spamd']['options'] =
   ]
 
 execute 'sa-update' do
-  case node['platform']
-  when 'debian', 'ubuntu'
+  case node['platform_family']
+  when 'debian'
     command(
       format(
         "sa-update --gpghomedir '%<lib_path>s/sa-update-keys'",
@@ -70,15 +70,27 @@ execute 'sa-update' do
   notifies :restart, "service[#{service_name}]"
 end
 
-package 'spamassassin' do
-  notifies :run, 'execute[sa-update]'
+node['spamassassin']['spamd']['packages'].each do |pkg|
+  package pkg do
+    notifies :run, 'execute[sa-update]'
+  end
 end
 
 options = node['spamassassin']['spamd']['options']
 
-case node['platform']
-when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon'
-
+case node['platform_family']
+when 'suse'
+  template '/etc/sysconfig/spamd' do
+    source 'sysconfig_spamassassin.erb'
+    owner 'root'
+    group 'root'
+    mode '00644'
+    variables(
+      options: options
+    )
+    notifies :restart, "service[#{service_name}]"
+  end
+when 'fedora', 'rhel', 'suse'
   template '/etc/sysconfig/spamassassin' do
     source 'sysconfig_spamassassin.erb'
     owner 'root'
@@ -91,10 +103,7 @@ when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon'
     )
     notifies :restart, "service[#{service_name}]"
   end
-
-when 'debian', 'ubuntu'
-  package 'spamc'
-
+when 'debian'
   template '/etc/default/spamassassin' do
     source 'default_spamassassin.erb'
     owner 'root'
@@ -108,7 +117,6 @@ when 'debian', 'ubuntu'
     )
     notifies :restart, "service[#{service_name}]"
   end
-
 end
 
 execute 'fix-spamd-lib-owner' do

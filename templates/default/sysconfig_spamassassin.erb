@@ -4,7 +4,7 @@ if (%w(--daemonize -d) & @options).empty?
   # Avoid daemonize with systemd and "Type=forking" enabled
   systemd_config = '/usr/lib/systemd/system/spamassassin.service'
   unless ::File.exist?(systemd_config) &&
-         !system("grep -q '^\s*Type=forking' '#{systemd_config}'")
+         !Mixlib::ShellOut.new("grep -q '^\s*Type=forking' '#{systemd_config}'")
     @options = @options + %w(--daemonize)
   end
 end
