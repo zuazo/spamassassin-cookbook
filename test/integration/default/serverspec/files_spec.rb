@@ -21,7 +21,7 @@ require 'spec_helper'
 
 platform = os[:family].downcase
 
-def has_runuser?
+def runuser?
   system('which runuser')
 end
 
@@ -40,8 +40,8 @@ unless service_config.nil?
     it { should be_mode 644 }
     it { should be_owned_by 'root' }
     it { should be_grouped_into 'root' }
-    it { should be_readable.by_user('spamd') } if has_runuser?
-    it { should_not be_writable.by_user('spamd') } if has_runuser?
+    it { should be_readable.by_user('spamd') } if runuser?
+    it { should_not be_writable.by_user('spamd') } if runuser?
   end
 end
 
@@ -50,8 +50,8 @@ describe file('/var/lib/spamassassin') do
   it { should be_mode 755 }
   it { should be_owned_by 'spamd' }
   it { should be_grouped_into 'spamd' }
-  it { should be_readable.by_user('spamd') } if has_runuser?
-  it { should be_writable.by_user('spamd') } if has_runuser?
+  it { should be_readable.by_user('spamd') } if runuser?
+  it { should be_writable.by_user('spamd') } if runuser?
 end
 
 describe file('/etc/mail/spamassassin/local.cf') do
@@ -59,6 +59,6 @@ describe file('/etc/mail/spamassassin/local.cf') do
   it { should be_mode 644 }
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
-  it { should be_readable.by_user('spamd') } if has_runuser?
-  it { should_not be_writable.by_user('spamd') } if has_runuser?
+  it { should be_readable.by_user('spamd') } if runuser?
+  it { should_not be_writable.by_user('spamd') } if runuser?
 end
