@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-node.default['onddo-spamassassin']['conf']['plugins']['shortcircuit'] =
+node.default['spamassassin']['conf']['plugins']['shortcircuit'] =
   [{
     'USER_IN_WHITELIST' => 'on',
     'USER_IN_DEF_WHITELIST' => 'on',

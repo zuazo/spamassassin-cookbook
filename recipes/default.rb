@@ -19,26 +19,39 @@
 # limitations under the License.
 #
 
-service_name = node['onddo-spamassassin']['spamd']['service_name']
+# Attribute namespace backwards compatible
+unless node['onddo-spamassassin'].nil?
+  Chef::Log.warn(
+    '[DEPRECATED] Use `node["spamassassin"]` namespace with the '\
+    'onddo-spamassassin cookbook instead of the old `node["spamassassin"]` '\
+    'namespace.'
+  )
+  node.default['spamassassin'] =
+    Chef::Mixin::DeepMerge.hash_only_merge!(
+      node['spamassassin'], node['onddo-spamassassin']
+    )
+end
 
-user node['onddo-spamassassin']['spamd']['user'] do
+service_name = node['spamassassin']['spamd']['service_name']
+
+user node['spamassassin']['spamd']['user'] do
   comment 'SpamAssassin Daemon'
-  home node['onddo-spamassassin']['spamd']['lib_path']
+  home node['spamassassin']['spamd']['lib_path']
   shell '/bin/false'
   system true
 end
 
-group node['onddo-spamassassin']['spamd']['group'] do
-  members [node['onddo-spamassassin']['spamd']['user']]
+group node['spamassassin']['spamd']['group'] do
+  members [node['spamassassin']['spamd']['user']]
   system true
   append true
 end
 
-node.default['onddo-spamassassin']['spamd']['options'] =
-  node['onddo-spamassassin']['spamd']['options'] +
+node.default['spamassassin']['spamd']['options'] =
+  node['spamassassin']['spamd']['options'] +
   [
-    "--username=#{node['onddo-spamassassin']['spamd']['user']}",
-    "--groupname=#{node['onddo-spamassassin']['spamd']['group']}"
+    "--username=#{node['spamassassin']['spamd']['user']}",
+    "--groupname=#{node['spamassassin']['spamd']['group']}"
   ]
 
 execute 'sa-update' do
@@ -47,7 +60,7 @@ execute 'sa-update' do
     command(
       format(
         "sa-update --gpghomedir '%<lib_path>s/sa-update-keys'",
-        lib_path: node['onddo-spamassassin']['spamd']['lib_path']
+        lib_path: node['spamassassin']['spamd']['lib_path']
       )
     )
   else
@@ -61,7 +74,7 @@ package 'spamassassin' do
   notifies :run, 'execute[sa-update]'
 end
 
-options = node['onddo-spamassassin']['spamd']['options']
+options = node['spamassassin']['spamd']['options']
 
 case node['platform']
 when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon'
@@ -73,8 +86,8 @@ when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon'
     mode '00644'
     variables(
       options: options,
-      pidfile: node['onddo-spamassassin']['spamd']['pidfile'],
-      nice: node['onddo-spamassassin']['spamd']['nice']
+      pidfile: node['spamassassin']['spamd']['pidfile'],
+      nice: node['spamassassin']['spamd']['nice']
     )
     notifies :restart, "service[#{service_name}]"
   end
@@ -88,10 +101,10 @@ when 'debian', 'ubuntu'
     group 'root'
     mode '00644'
     variables(
-      enabled: node['onddo-spamassassin']['spamd']['enabled'],
+      enabled: node['spamassassin']['spamd']['enabled'],
       options: options,
-      pidfile: node['onddo-spamassassin']['spamd']['pidfile'],
-      nice: node['onddo-spamassassin']['spamd']['nice']
+      pidfile: node['spamassassin']['spamd']['pidfile'],
+      nice: node['spamassassin']['spamd']['nice']
     )
     notifies :restart, "service[#{service_name}]"
   end
@@ -102,17 +115,17 @@ execute 'fix-spamd-lib-owner' do
   command(
     format(
       "chown -R '%<user>s:%<group>s' '%<path>s'",
-      user: node['onddo-spamassassin']['spamd']['user'],
-      group: node['onddo-spamassassin']['spamd']['group'],
-      path: node['onddo-spamassassin']['spamd']['lib_path']
+      user: node['spamassassin']['spamd']['user'],
+      group: node['spamassassin']['spamd']['group'],
+      path: node['spamassassin']['spamd']['lib_path']
     )
   )
   action :nothing
 end
 
-directory node['onddo-spamassassin']['spamd']['lib_path'] do
-  owner node['onddo-spamassassin']['spamd']['user']
-  group node['onddo-spamassassin']['spamd']['group']
+directory node['spamassassin']['spamd']['lib_path'] do
+  owner node['spamassassin']['spamd']['user']
+  group node['spamassassin']['spamd']['group']
   notifies :run, 'execute[fix-spamd-lib-owner]', :immediately
 end
 
@@ -122,12 +135,12 @@ template '/etc/mail/spamassassin/local.cf' do
   group 'root'
   mode '00644'
   variables(
-    conf: node['onddo-spamassassin']['conf']
+    conf: node['spamassassin']['conf']
   )
   notifies :restart, "service[#{service_name}]"
 end
 
-if node['onddo-spamassassin']['spamd']['enabled']
+if node['spamassassin']['spamd']['enabled']
   service service_name do
     supports restart: true, reload: true, status: true
     action [:enable, :start]

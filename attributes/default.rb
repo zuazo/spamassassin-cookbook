@@ -19,8 +19,8 @@
 # limitations under the License.
 #
 
-default['onddo-spamassassin']['spamc']['path'] = '/usr/bin/spamc'
-default['onddo-spamassassin']['spamd']['path'] =
+default['spamassassin']['spamc']['path'] = '/usr/bin/spamc'
+default['spamassassin']['spamd']['path'] =
   case node['platform']
   when 'redhat', 'centos', 'scientific', 'fedora', 'suse', 'amazon'
     '/usr/bin/spamd'
@@ -28,24 +28,24 @@ default['onddo-spamassassin']['spamd']['path'] =
     '/usr/sbin/spamd'
   end
 
-default['onddo-spamassassin']['spamd']['service_name'] =
+default['spamassassin']['spamd']['service_name'] =
   case node['platform']
   when 'suse', 'opensuse'
     'spamd'
   else
     'spamassassin'
   end
-default['onddo-spamassassin']['spamd']['user'] = 'spamd'
-default['onddo-spamassassin']['spamd']['group'] = 'spamd'
-default['onddo-spamassassin']['spamd']['lib_path'] = '/var/lib/spamassassin'
-default['onddo-spamassassin']['spamd']['enabled'] = true
+default['spamassassin']['spamd']['user'] = 'spamd'
+default['spamassassin']['spamd']['group'] = 'spamd'
+default['spamassassin']['spamd']['lib_path'] = '/var/lib/spamassassin'
+default['spamassassin']['spamd']['enabled'] = true
 
 # TODO: /etc/default/spamassassin, /etc/sysconfig/spamassassin
 
-default['onddo-spamassassin']['spamd']['options'] = [
+default['spamassassin']['spamd']['options'] = [
   '--create-prefs',
   '--max-children 5',
   '--helper-home-dir'
 ]
-default['onddo-spamassassin']['spamd']['pidfile'] = '/var/run/spamd.pid'
-default['onddo-spamassassin']['spamd']['nice'] = nil
+default['spamassassin']['spamd']['pidfile'] = '/var/run/spamd.pid'
+default['spamassassin']['spamd']['nice'] = nil

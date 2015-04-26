@@ -22,6 +22,28 @@ require 'spec_helper'
 describe 'onddo-spamassassin::default' do
   let(:chef_runner) { ChefSpec::SoloRunner.new }
   let(:chef_run) { chef_runner.converge(described_recipe) }
+  let(:node) { chef_runner.node }
+
+  context 'with the old attribute namespace' do
+    before do
+      node.set['onddo-spamassassin']['conf']['required_score'] = 4
+    end
+
+    it 'prints the deprecated warning' do
+      expect(Chef::Log).to receive(:warn).with(/DEPRECATED/)
+      chef_run
+    end
+
+    it 'merges the old attribute namespace' do
+      chef_run
+      expect(node['spamassassin']['conf']['required_score']).to eq(4)
+    end
+  end
+
+  it 'does not print the deprecated warning' do
+    expect(Chef::Log).to_not receive(:warn).with(/DEPRECATED/)
+    chef_run
+  end
 
   it 'creates spamd user' do
     expect(chef_run).to create_user('spamd')

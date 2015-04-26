@@ -38,37 +38,37 @@ Attributes
     <th>Default</th>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamc']['path']</code></td>
+    <td><code>node['spamassassin']['spamc']['path']</code></td>
     <td>SpamAssassin client binary path</td>
     <td><em>calculated</em></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamd']['path']</code></td>
+    <td><code>node['spamassassin']['spamd']['path']</code></td>
     <td>SpamAssassin daemon binary path</td>
     <td><em>calculated</em></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamd']['user']</code></td>
+    <td><code>node['spamassassin']['spamd']['user']</code></td>
     <td>SpamAssassin user</td>
     <td><code>'spamd'</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamd']['group']</code></td>
+    <td><code>node['spamassassin']['spamd']['group']</code></td>
     <td>SpamAssassin group</td>
     <td><code>'spamd'</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamd']['lib_path']</code></td>
+    <td><code>node['spamassassin']['spamd']['lib_path']</code></td>
     <td>SpamAssassin group</td>
     <td><em>calculated</em></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamd']['enabled']</code></td>
+    <td><code>node['spamassassin']['spamd']['enabled']</code></td>
     <td>SpamAssassin daemon enabler flag</td>
     <td><code>true</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamd']['options']</code></td>
+    <td><code>node['spamassassin']['spamd']['options']</code></td>
     <td>SpamAssassin daemon option arguments</td>
     <td><code>[<br/>
       &nbsp;&nbsp;'--create-prefs',<br/>
@@ -77,17 +77,17 @@ Attributes
     ]</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamd']['pidfile']</code></td>
+    <td><code>node['spamassassin']['spamd']['pidfile']</code></td>
     <td>SpamAssassin daemon pid file</td>
     <td><code>'/var/run/spamd.pid'</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['spamd']['nice']</code></td>
+    <td><code>node['spamassassin']['spamd']['nice']</code></td>
     <td>SpamAssassin daemon nice scheduling priority</td>
     <td><code>nil</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['rewrite_headers']</code></td>
+    <td><code>node['spamassassin']['conf']['rewrite_headers']</code></td>
     <td>An array of rewrite headers</td>
     <td><code>[<br/>
       &nbsp;&nbsp;{<br/>
@@ -96,42 +96,42 @@ Attributes
     ]</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['report_safe']</code></td>
+    <td><code>node['spamassassin']['conf']['report_safe']</code></td>
     <td>SpamAssassin report_safe enabler flag</td>
     <td><code>true</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['trusted_networks']</code></td>
+    <td><code>node['spamassassin']['conf']['trusted_networks']</code></td>
     <td>Network or hosts that are considered trusted</td>
     <td><code>nil</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['lock_method']</code></td>
+    <td><code>node['spamassassin']['conf']['lock_method']</code></td>
     <td>File-locking method used to protect database files on-disk</td>
     <td><code>'flock'</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['required_score']</code></td>
+    <td><code>node['spamassassin']['conf']['required_score']</code></td>
     <td>Score required before a mail is considered spam</td>
     <td><code>5</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['use_bayes']</code></td>
+    <td><code>node['spamassassin']['conf']['use_bayes']</code></td>
     <td>Whether to use the naive-Bayesian-style classifier</td>
     <td><code>true</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['bayes_auto_learn']</code></td>
+    <td><code>node['spamassassin']['conf']['bayes_auto_learn']</code></td>
     <td>Whether SpamAssassin should automatically feed high-scoring mail</td>
     <td><code>true</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['bayes_ignore_headers']</code></td>
+    <td><code>node['spamassassin']['conf']['bayes_ignore_headers']</code></td>
     <td>Headers ignored by the naive-Bayesian-style classifier</td>
     <td><code>[]</code></td>
   </tr>
   <tr>
-    <td><code>node['onddo-spamassassin']['conf']['plugins']</code></td>
+    <td><code>node['spamassassin']['conf']['plugins']</code></td>
     <td>A hash to configure SpamAssassin plugins (<a href="#plugin-example">see the example below</a>)</td>
     <td><code>[]</code></td>
   </tr>
@@ -140,7 +140,7 @@ Attributes
 ## plugin example
 
 ```ruby
-node.default['onddo-spamassassin']['conf']['plugins']['shortcircuit'] = [
+node.default['spamassassin']['conf']['plugins']['shortcircuit'] = [
   {
     'USER_IN_WHITELIST' => 'on',
     'USER_IN_DEF_WHITELIST' => 'on',
@@ -175,7 +175,7 @@ Running it from a recipe:
 
 ```ruby
 # Required_score is set to 5 by default, change it:
-node.default['onddo-spamassassin']['conf']['required_score'] = 4
+node.default['spamassassin']['conf']['required_score'] = 4
 include_recipe 'onddo-spamassassin::default' # or include it in your run-list
 ```
 
