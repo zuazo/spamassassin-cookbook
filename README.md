@@ -17,7 +17,9 @@ This cookbook has been tested on the following platforms:
 * CentOS
 * Debian
 * Fedora
+* openSUSE
 * RedHat
+* SUSE
 * Ubuntu
 
 Please, [let us know](https://github.com/onddo/spamassassin-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
@@ -219,8 +221,8 @@ License and Author
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Author:**          | Xabier de Zuazo (<xabier@onddo.com>)
-| **Copyright:**       | Copyright (c) 2013-2014 Onddo Labs, SL. (www.onddo.com)
+| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@onddo.com>)
+| **Copyright:**       | Copyright (c) 2013-2015 Onddo Labs, SL. (www.onddo.com)
 | **License:**         | Apache License, Version 2.0
 
     Licensed under the Apache License, Version 2.0 (the "License");

@@ -10,15 +10,16 @@ group :test do
 end
 
 group :style do
-  gem 'foodcritic', '~> 4.0'
+  gem 'foodcritic', '= 4.0.0'
 end
 
 group :unit do
   gem 'chefspec', '~> 4.0'
+  gem 'ohai', '~> 7.4' if RUBY_VERSION < '2'
 end
 
 group :integration do
-  gem 'vagrant-wrapper'
+  gem 'vagrant-wrapper', '~> 2.0'
   gem 'test-kitchen', '~> 1.2'
   gem 'kitchen-vagrant', '~> 0.10'
 end

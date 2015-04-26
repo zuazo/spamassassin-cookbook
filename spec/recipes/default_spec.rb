@@ -118,4 +118,19 @@ describe 'onddo-spamassassin::default' do
       .with_supports(restart: true, reload: true, status: true)
   end
 
+  context 'in OpenSuse' do
+    let(:chef_runner) do
+      ChefSpec::SoloRunner.new(platform: 'opensuse', version: '13.1')
+    end
+
+    it 'should enable spamd service' do
+      expect(chef_run).to enable_service('spamd')
+        .with_supports(restart: true, reload: true, status: true)
+    end
+
+    it 'should start spamd service' do
+      expect(chef_run).to start_service('spamd')
+        .with_supports(restart: true, reload: true, status: true)
+    end
+  end
 end

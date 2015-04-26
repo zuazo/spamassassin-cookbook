@@ -6,20 +6,28 @@ provisioner:
   require_chef_omnibus: true
 
 platforms:
-- name: centos-5.10
-- name: centos-6.5
+- name: centos-5.11
+- name: centos-6.6
 - name: centos-7.0
 - name: debian-6.0.10
   run_list: ["recipe[apt]"]
-- name: debian-7.6
+- name: debian-7.8
   run_list: ["recipe[apt]"]
 - name: fedora-19
+  driver_config:
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_fedora-19_chef-provisionerless.box
 - name: fedora-20
+- name: fedora-21
+- name: opensuse-13.1
+  driver_config:
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_opensuse-13.1-x86_64_chef-provisionerless.box
 - name: ubuntu-10.04
   run_list: ["recipe[apt]"]
 - name: ubuntu-12.04
   run_list: ["recipe[apt]"]
 - name: ubuntu-14.04
+  run_list: ["recipe[apt]"]
+- name: ubuntu-14.10
   run_list: ["recipe[apt]"]
 
 suites:

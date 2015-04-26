@@ -8,6 +8,13 @@ else
   default['onddo-spamassassin']['spamd']['path'] = '/usr/sbin/spamd'
 end
 
+default['onddo-spamassassin']['spamd']['service_name'] =
+  case node['platform']
+  when 'suse', 'opensuse'
+    'spamd'
+  else
+    'spamassassin'
+  end
 default['onddo-spamassassin']['spamd']['user'] = 'spamd'
 default['onddo-spamassassin']['spamd']['group'] = 'spamd'
 default['onddo-spamassassin']['spamd']['lib_path'] = '/var/lib/spamassassin'

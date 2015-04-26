@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+service_name = node['onddo-spamassassin']['spamd']['service_name']
+
 user node['onddo-spamassassin']['spamd']['user'] do
   comment 'SpamAssassin Daemon'
   home node['onddo-spamassassin']['spamd']['lib_path']
@@ -43,7 +45,7 @@ execute 'sa-update' do
     command 'sa-update --no-gpg'
   end
   action :nothing
-  notifies :restart, 'service[spamassassin]'
+  notifies :restart, "service[#{service_name}]"
 end
 
 package 'spamassassin' do
@@ -65,7 +67,7 @@ when 'redhat','centos','scientific','fedora','suse','amazon' then
       :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
       :nice => node['onddo-spamassassin']['spamd']['nice']
     )
-    notifies :restart, 'service[spamassassin]'
+    notifies :restart, "service[#{service_name}]"
   end
 
 when 'debian', 'ubuntu'
@@ -82,7 +84,7 @@ when 'debian', 'ubuntu'
       :pidfile => node['onddo-spamassassin']['spamd']['pidfile'],
       :nice => node['onddo-spamassassin']['spamd']['nice']
     )
-    notifies :restart, 'service[spamassassin]'
+    notifies :restart, "service[#{service_name}]"
   end
 
 end
@@ -106,16 +108,16 @@ template '/etc/mail/spamassassin/local.cf' do
   variables(
     :conf => node['onddo-spamassassin']['conf']
   )
-  notifies :restart, 'service[spamassassin]'
+  notifies :restart, "service[#{service_name}]"
 end
 
 if node['onddo-spamassassin']['spamd']['enabled']
-  service 'spamassassin' do
+  service service_name do
     supports :restart => true, :reload => true, :status => true
     action [ :enable, :start ]
   end
 else
-  service 'spamassassin' do
+  service service_name do
     supports :restart => true, :reload => false, :status => true
     action [ :disable, :stop ]
   end
