@@ -27,7 +27,7 @@ unless node['onddo-spamassassin'].nil?
     'namespace.'
   )
   node.default['spamassassin'] =
-    Chef::Mixin::DeepMerge.hash_only_merge!(
+    Chef::Mixin::DeepMerge.hash_only_merge(
       node['spamassassin'], node['onddo-spamassassin']
     )
 end
