@@ -3,7 +3,7 @@ TODO
 
 * [x] RuboCop.
 * [x] Use "spamassassin" attribute namespace.
-* [ ] ServerSpec integration tests.
+* [x] ServerSpec integration tests.
 * [ ] RSpec tests for libraries.
 * [ ] Coverage.
 * [ ] Guardfile.
