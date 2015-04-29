@@ -2,7 +2,20 @@
 
 This file is used to list changes made in each version of `onddo-spamassassin`.
 
-## 0.2.0 (2014-09-22)
+## v1.0.0 (2015-04-29)
+
+* Move the attribute namespace from `node['onddo-spamassassin']` to `node['spamassassin']`, includes a deprecation message  (**breaking change**).
+* Add SUSE and OpenSUSE support.
+* Refactor and improve multiple platform support.
+* Fix all RuboCop offenses.
+
+* Tests
+ * Add ServerSpec integration tests.
+ * Integrate unit tests with `should_not` gem.
+ * Update unit tests to use `ChefSpec::SoloRunner`.
+ * travis.yml: Use the new build env.
+
+## v0.2.0 (2014-09-22)
 
 * `Gemfile` updates:
  * Berkshelf version 3.
@@ -24,6 +37,6 @@ This file is used to list changes made in each version of `onddo-spamassassin`.
 * Added `travis.yml` file and a `Rakefile`.
 * `TODO` added tasks: *RuboCop* and namespace change.
 
-## 0.1.0 (2013-06-09)
+## v0.1.0 (2013-06-09)
 
 * Initial release of `onddo-spamassassin`.

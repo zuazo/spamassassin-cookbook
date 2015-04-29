@@ -2,7 +2,7 @@ Description
 ===========
 [![Cookbook Version](https://img.shields.io/cookbook/v/onddo-spamassassin.svg?style=flat)](https://supermarket.chef.io/cookbooks/onddo-spamassassin)
 [![Dependency Status](http://img.shields.io/gemnasium/onddo/spamassassin-cookbook.svg?style=flat)](https://gemnasium.com/onddo/spamassassin-cookbook)
-[![Build Status](http://img.shields.io/travis/onddo/spamassassin-cookbook.svg?style=flat)](https://travis-ci.org/onddo/spamassassin-cookbook)
+[![Build Status](http://img.shields.io/travis/onddo/spamassassin-cookbook/1.0.0.svg?style=flat)](https://travis-ci.org/onddo/spamassassin-cookbook)
 
 Installs and configures [SpamAssassin](http://spamassassin.apache.org/), a mail filter software to identify spam.
 

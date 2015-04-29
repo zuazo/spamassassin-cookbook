@@ -26,7 +26,7 @@ description <<-EOH
 Installs and configures SpamAssassin, a mail filter software to identify spam.
 EOH
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.3.0' # WiP
+version '1.0.0'
 
 supports 'amazon'
 supports 'centos'
