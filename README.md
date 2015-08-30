@@ -31,111 +31,26 @@ Please, [let us know](https://github.com/zuazo/spamassassin-cookbook/issues/new?
 Attributes
 ==========
 
-<table>
-  <tr>
-    <th>Attribute</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamc']['path']</code></td>
-    <td>SpamAssassin client binary path</td>
-    <td><em>calculated</em></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamd']['path']</code></td>
-    <td>SpamAssassin daemon binary path</td>
-    <td><em>calculated</em></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamd']['user']</code></td>
-    <td>SpamAssassin user</td>
-    <td><code>'spamd'</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamd']['group']</code></td>
-    <td>SpamAssassin group</td>
-    <td><code>'spamd'</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamd']['lib_path']</code></td>
-    <td>SpamAssassin group</td>
-    <td><em>calculated</em></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamd']['enabled']</code></td>
-    <td>SpamAssassin daemon enabler flag</td>
-    <td><code>true</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamd']['options']</code></td>
-    <td>SpamAssassin daemon option arguments</td>
-    <td><code>[<br/>
-      &nbsp;&nbsp;'--create-prefs',<br/>
-      &nbsp;&nbsp;'--max-children 5',<br/>
-      &nbsp;&nbsp;'--helper-home-dir'<br/>
-    ]</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamd']['pidfile']</code></td>
-    <td>SpamAssassin daemon pid file</td>
-    <td><code>'/var/run/spamd.pid'</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['spamd']['nice']</code></td>
-    <td>SpamAssassin daemon nice scheduling priority</td>
-    <td><code>nil</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['rewrite_headers']</code></td>
-    <td>An array of rewrite headers</td>
-    <td><code>[<br/>
-      &nbsp;&nbsp;{<br/>
-      &nbsp;&nbsp;&nbsp;&nbsp;'Subject' => '[SPAM]'<br/>
-      &nbsp;&nbsp;}<br/>
-    ]</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['report_safe']</code></td>
-    <td>SpamAssassin report_safe enabler flag</td>
-    <td><code>true</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['trusted_networks']</code></td>
-    <td>Network or hosts that are considered trusted</td>
-    <td><code>nil</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['lock_method']</code></td>
-    <td>File-locking method used to protect database files on-disk</td>
-    <td><code>'flock'</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['required_score']</code></td>
-    <td>Score required before a mail is considered spam</td>
-    <td><code>5</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['use_bayes']</code></td>
-    <td>Whether to use the naive-Bayesian-style classifier</td>
-    <td><code>true</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['bayes_auto_learn']</code></td>
-    <td>Whether SpamAssassin should automatically feed high-scoring mail</td>
-    <td><code>true</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['bayes_ignore_headers']</code></td>
-    <td>Headers ignored by the naive-Bayesian-style classifier</td>
-    <td><code>[]</code></td>
-  </tr>
-  <tr>
-    <td><code>node['spamassassin']['conf']['plugins']</code></td>
-    <td>A hash to configure SpamAssassin plugins (<a href="#plugin-example">see the example below</a>)</td>
-    <td><code>[]</code></td>
-  </tr>
-</table>
+| Attribute                                              | Default                | Description                    |
+|:-------------------------------------------------------|:-----------------------|:-------------------------------|
+| `node['spamassassin']['spamc']['path']`                | *calculated*           | SpamAssassin client binary path.
+| `node['spamassassin']['spamd']['path']`                | *calculated*           | SpamAssassin daemon binary path.
+| `node['spamassassin']['spamd']['user']`                | `'spamd'`              | SpamAssassin user.
+| `node['spamassassin']['spamd']['group']`               | `'spamd'`              | SpamAssassin group.
+| `node['spamassassin']['spamd']['lib_path']`            | *calculated*           | SpamAssassin library path.
+| `node['spamassassin']['spamd']['enabled']`             | `true`                 | SpamAssassin daemon enabler flag.
+| `node['spamassassin']['spamd']['options']`             | *calculated*           | SpamAssassin daemon option arguments.
+| `node['spamassassin']['spamd']['pidfile']`             | `'/var/run/spamd.pid'` | SpamAssassin daemon pid file.
+| `node['spamassassin']['spamd']['nice']`                | `nil`                  | SpamAssassin daemon nice scheduling priority.
+| `node['spamassassin']['conf']['rewrite_headers']`      | *calculated*           | An array of rewrite headers.
+| `node['spamassassin']['conf']['report_safe']`          | `true`                 | SpamAssassin report_safe enabler flag.
+| `node['spamassassin']['conf']['trusted_networks']`     | `nil`                  | Network or hosts that are considered trusted.
+| `node['spamassassin']['conf']['lock_method']`          | `'flock'`              | File-locking method used to protect database files on-disk.
+| `node['spamassassin']['conf']['required_score']`       | `5`                    | Score required before a mail is considered spam.
+| `node['spamassassin']['conf']['use_bayes']`            | `true`                 | Whether to use the naive-Bayesian-style classifier.
+| `node['spamassassin']['conf']['bayes_auto_learn']`     | `true`                 | Whether SpamAssassin should automatically feed high-scoring mail.
+| `node['spamassassin']['conf']['bayes_ignore_headers']` | `[]`                   | Headers ignored by the naive-Bayesian-style classifier.
+| `node['spamassassin']['conf']['plugins']`              | `[]`                   | A hash to configure SpamAssassin plugins ([see the example below](#plugin-example)).
 
 ## plugin example
 
