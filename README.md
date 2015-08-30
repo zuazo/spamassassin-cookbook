@@ -1,8 +1,8 @@
 Description
 ===========
 [![Cookbook Version](https://img.shields.io/cookbook/v/onddo-spamassassin.svg?style=flat)](https://supermarket.chef.io/cookbooks/onddo-spamassassin)
-[![Dependency Status](http://img.shields.io/gemnasium/onddo/spamassassin-cookbook.svg?style=flat)](https://gemnasium.com/onddo/spamassassin-cookbook)
-[![Build Status](http://img.shields.io/travis/onddo/spamassassin-cookbook.svg?style=flat)](https://travis-ci.org/onddo/spamassassin-cookbook)
+[![Dependency Status](http://img.shields.io/gemnasium/zuazo/spamassassin-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/spamassassin-cookbook)
+[![Build Status](http://img.shields.io/travis/zuazo/spamassassin-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/spamassassin-cookbook)
 
 Installs and configures [SpamAssassin](http://spamassassin.apache.org/), a mail filter software to identify spam.
 
@@ -22,7 +22,7 @@ This cookbook has been tested on the following platforms:
 * SUSE
 * Ubuntu
 
-Please, [let us know](https://github.com/onddo/spamassassin-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
+Please, [let us know](https://github.com/zuazo/spamassassin-cookbook/issues/new?title=I%20have%20used%20it%20successfully%20on%20...) if you use it successfully on any other platform.
 
 ## Required Applications
 
@@ -194,7 +194,7 @@ Another alternative is to include the default recipe in your *Run List*.
 
 ```json
 {
-  "name": "mail.onddo.com",
+  "name": "mail.example.com",
   "[...]": "[...]",
   "run_list": [
     "recipe[onddo-spamassassin]"
@@ -205,19 +205,19 @@ Another alternative is to include the default recipe in your *Run List*.
 Testing
 =======
 
-See [TESTING.md](https://github.com/onddo/spamassassin-cookbook/blob/master/TESTING.md).
+See [TESTING.md](https://github.com/zuazo/spamassassin-cookbook/blob/master/TESTING.md).
 
 Contributing
 ============
 
-Please do not hesitate to [open an issue](https://github.com/onddo/spamassassin-cookbook/issues/new) with any questions or problems.
+Please do not hesitate to [open an issue](https://github.com/zuazo/spamassassin-cookbook/issues/new) with any questions or problems.
 
-See [CONTRIBUTING.md](https://github.com/onddo/spamassassin-cookbook/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](https://github.com/zuazo/spamassassin-cookbook/blob/master/CONTRIBUTING.md).
 
 TODO
 ====
 
-See [TODO.md](https://github.com/onddo/spamassassin-cookbook/blob/master/TODO.md).
+See [TODO.md](https://github.com/zuazo/spamassassin-cookbook/blob/master/TODO.md).
 
 
 License and Author
@@ -225,8 +225,9 @@ License and Author
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@onddo.com>)
-| **Copyright:**       | Copyright (c) 2013-2015 Onddo Labs, SL. (www.onddo.com)
+| **Author:**          | [Xabier de Zuazo](https://github.com/zuazo) (<xabier@zuazo.org>)
+| **Copyright:**       | Copyright (c) 2015, Xabier de Zuazo
+| **Copyright:**       | Copyright (c) 2013-2015 Onddo Labs, SL.
 | **License:**         | Apache License, Version 2.0
 
     Licensed under the Apache License, Version 2.0 (the "License");
