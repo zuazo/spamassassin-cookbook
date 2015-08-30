@@ -22,10 +22,14 @@
 default['spamassassin']['spamc']['path'] = '/usr/bin/spamc'
 
 case node['platform_family']
-when 'fedora', 'rhel'
+when 'rhel'
   default['spamassassin']['spamd']['path'] = '/usr/bin/spamd'
   default['spamassassin']['spamd']['service_name'] = 'spamassassin'
   default['spamassassin']['spamd']['packages'] = %w(spamassassin)
+when 'fedora'
+  default['spamassassin']['spamd']['path'] = '/usr/bin/spamd'
+  default['spamassassin']['spamd']['service_name'] = 'spamassassin'
+  default['spamassassin']['spamd']['packages'] = %w(deltarpm spamassassin)
 when 'suse'
   default['spamassassin']['spamd']['path'] = '/usr/sbin/spamd'
   default['spamassassin']['spamd']['service_name'] = 'spamd'

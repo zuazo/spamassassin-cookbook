@@ -101,6 +101,41 @@ describe 'onddo-spamassassin::default' do
       ChefSpec::SoloRunner.new(platform: 'centos', version: '5.10')
     end
 
+    it 'does not install spamc package' do
+      expect(chef_run).to_not install_package('spamc')
+    end
+
+    it 'does not install deltarpm package' do
+      expect(chef_run).to_not install_package('deltarpm')
+    end
+
+    it 'creates sysconfig/spamassassin file' do
+      expect(chef_run).to create_template('/etc/sysconfig/spamassassin')
+        .with_source('sysconfig_spamassassin.erb')
+        .with_owner('root')
+        .with_group('root')
+        .with_mode('00644')
+    end
+
+    it 'sysconfig/spamassassin restarts spamassassin service' do
+      resource = chef_run.template('/etc/sysconfig/spamassassin')
+      expect(resource).to notify('service[spamassassin]').to(:restart).delayed
+    end
+  end # context on CentOS
+
+  context 'on Fedora' do
+    let(:chef_runner) do
+      ChefSpec::SoloRunner.new(platform: 'fedora', version: '21')
+    end
+
+    it 'does not install spamc package' do
+      expect(chef_run).to_not install_package('spamc')
+    end
+
+    it 'installs deltarpm package' do
+      expect(chef_run).to install_package('deltarpm')
+    end
+
     it 'creates sysconfig/spamassassin file' do
       expect(chef_run).to create_template('/etc/sysconfig/spamassassin')
         .with_source('sysconfig_spamassassin.erb')
@@ -120,6 +155,14 @@ describe 'onddo-spamassassin::default' do
       ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '12.04')
     end
 
+    it 'installs spamc package' do
+      expect(chef_run).to install_package('spamc')
+    end
+
+    it 'does not install deltarpm package' do
+      expect(chef_run).to_not install_package('deltarpm')
+    end
+
     it 'creates default/spamassassin file' do
       expect(chef_run).to create_template('/etc/default/spamassassin')
         .with_source('default_spamassassin.erb')
@@ -137,6 +180,14 @@ describe 'onddo-spamassassin::default' do
   context 'on openSUSE' do
     let(:chef_runner) do
       ChefSpec::SoloRunner.new(platform: 'opensuse', version: '13.1')
+    end
+
+    it 'does not install spamc package' do
+      expect(chef_run).to_not install_package('spamc')
+    end
+
+    it 'does not install deltarpm package' do
+      expect(chef_run).to_not install_package('deltarpm')
     end
 
     it 'creates default/spamd file' do
