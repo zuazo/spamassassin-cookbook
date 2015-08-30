@@ -1,10 +1,10 @@
-Description
-===========
+SpamAssassin Cookbook
+=====================
 [![Cookbook Version](https://img.shields.io/cookbook/v/onddo-spamassassin.svg?style=flat)](https://supermarket.chef.io/cookbooks/onddo-spamassassin)
 [![Dependency Status](http://img.shields.io/gemnasium/zuazo/spamassassin-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/spamassassin-cookbook)
 [![Build Status](http://img.shields.io/travis/zuazo/spamassassin-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/spamassassin-cookbook)
 
-Installs and configures [SpamAssassin](http://spamassassin.apache.org/), a mail filter software to identify spam.
+[Chef](https://www.chef.io/) cookbook to install and configure [SpamAssassin](http://spamassassin.apache.org/), a mail filter software to identify spam.
 
 Requirements
 ============
