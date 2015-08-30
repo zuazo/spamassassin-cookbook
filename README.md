@@ -18,6 +18,7 @@ This cookbook has been tested on the following platforms:
 * Debian
 * Fedora
 * openSUSE
+* Oracle Linux
 * RedHat
 * SUSE
 * Ubuntu
