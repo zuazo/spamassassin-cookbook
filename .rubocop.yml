@@ -4,3 +4,5 @@ AllCops:
   Include:
   - 'files/*/*.rb'
   - '**/*.rb.erb'
+FormatParameterMismatch:
+  Enabled: false
