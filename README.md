@@ -2,7 +2,7 @@ SpamAssassin Cookbook
 =====================
 [![Cookbook Version](https://img.shields.io/cookbook/v/onddo-spamassassin.svg?style=flat)](https://supermarket.chef.io/cookbooks/onddo-spamassassin)
 [![Dependency Status](http://img.shields.io/gemnasium/zuazo/spamassassin-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/spamassassin-cookbook)
-[![Build Status](http://img.shields.io/travis/zuazo/spamassassin-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/spamassassin-cookbook)
+[![Build Status](http://img.shields.io/travis/zuazo/spamassassin-cookbook/1.1.0.svg?style=flat)](https://travis-ci.org/zuazo/spamassassin-cookbook)
 
 [Chef](https://www.chef.io/) cookbook to install and configure [SpamAssassin](http://spamassassin.apache.org/), a mail filter software to identify spam.
 
@@ -53,7 +53,7 @@ Attributes
 | `node['spamassassin']['conf']['bayes_ignore_headers']` | `[]`                   | Headers ignored by the naive-Bayesian-style classifier.
 | `node['spamassassin']['conf']['plugins']`              | `[]`                   | A hash to configure SpamAssassin plugins ([see the example below](#plugin-example)).
 
-## plugin example
+## Plugin Example
 
 ```ruby
 node.default['spamassassin']['conf']['plugins']['shortcircuit'] = [

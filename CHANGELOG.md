@@ -2,6 +2,30 @@
 
 This file is used to list changes made in each version of `onddo-spamassassin`.
 
+## v1.1.0 (2015-08-31)
+
+* Add Oracle Linux support.
+* Install `deltarpm` package on Fedora.
+* metadata: Add `source_url` and `issues_url`.
+* Update contact information and links after migration.
+
+* Documentation:
+ * README:
+  * Use markdown tables.
+  * Improve description.
+
+* Testing:
+ * Gemfile: Update RuboCop to `0.33.0`.
+ * Add a *Vagrantfile*.
+ * Add a *Guardfile*.
+ * Add a *.rubocop.yml* file.
+ * Move ChefSpec tests to *test/unit*.
+ * Rakefile: Add clean task.
+ * .kitchen.yml: Update platforms.
+ * Travis CI:
+  * Add Ruby `2.2`.
+  * Run test-kitchen in Travis with the `kitchen-in-travis` script.
+
 ## v1.0.0 (2015-04-29)
 
 * Move the attribute namespace from `node['onddo-spamassassin']` to `node['spamassassin']`, includes a deprecation message  (**breaking change**).
