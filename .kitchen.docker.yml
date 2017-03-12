@@ -38,21 +38,7 @@ platforms:
   driver_config:
     privileged: true
     run_command: /sbin/init
-- name: fedora-23
-  driver_config:
-    privileged: true
-    run_command: /sbin/init
-- name: fedora-24
-  driver_config:
-    privileged: true
-    run_command: /sbin/init
 - name: fedora-25
   driver_config:
     privileged: true
     run_command: /sbin/init
-
-# Non-official images with systemd
-- name: scientific-6.6
-  driver_config:
-    image: ringo/scientific:6.6
-    platform: rhel
