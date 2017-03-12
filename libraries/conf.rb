@@ -23,6 +23,17 @@
 module SpamAssassinCookbook
   # Chef SpamAssasssin Cookbook configuration helpers.
   module Conf
+    # Converts a configuration value for SpamAssassin.
+    #
+    # Basically it converts boolean values to numeric.
+    #
+    # @param v [Mixed] Value to convert.
+    # @return [String] Value converted for use in the configuration file.
+    # @example
+    #   SpamAssassinCookbook::Conf.value('String1') #=> "String1"
+    #   SpamAssassinCookbook::Conf.value(1234)      #=> "1234"
+    #   SpamAssassinCookbook::Conf.value(true)      #=> "1"
+    #   SpamAssassinCookbook::Conf.value(false)     #=> "0"
     def self.value(v)
       if v.is_a?(TrueClass)
         '1'
