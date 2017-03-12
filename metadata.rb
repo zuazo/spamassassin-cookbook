@@ -49,22 +49,12 @@ supports 'ubuntu'
 
 recipe 'onddo-spamassassin::default', 'Installs SpamAssassin client and Daemon'
 
-replaces 'spamassassin'
-
-grouping 'spamassassin/spamc',
-         title: 'Spamd options',
-         description: 'SpamAssassin client options'
-
 attribute 'spamassassin/spamc/path',
           display_name: 'spamc path',
           description: 'SpamAssassin client binary path',
           calculated: true,
           type: 'string',
           required: 'optional'
-
-grouping 'spamassassin/spamd',
-         title: 'Spamd options',
-         description: 'SpamAssassin daemon options'
 
 attribute 'spamassassin/spamd/path',
           display_name: 'spamd path',
@@ -126,10 +116,6 @@ attribute 'spamassassin/spamd/nice',
           type: 'string',
           required: 'optional',
           default: 'nil'
-
-grouping 'spamassassin/conf',
-         title: 'Configuration options',
-         description: 'SpamAssassin configuration options (local.cf)'
 
 attribute 'spamassassin/conf/rewrite_headers',
           display_name: 'spam rewrite_headers',
