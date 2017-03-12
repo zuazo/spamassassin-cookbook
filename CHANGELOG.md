@@ -3,7 +3,7 @@ All notable changes to the `onddo-spamassassin` cookbook will be documented in t
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [2.0.0] - 2017-03-12
 ### Added
 - Metadata: Add `chef_version`.
 - Metadata: Remove grouping ([RFC-85](https://github.com/chef/chef-rfc/blob/8d47f1d0afa5a2313ed2010e0eda318edc28ba47/rfc085-remove-unused-metadata.md)).
@@ -56,7 +56,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 0.1.0 - 2013-06-09
 - Initial release of `onddo-spamassassin`.
 
-[Unreleased]: https://github.com/zuazo/spamassassin-cookbook/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/zuazo/spamassassin-cookbook/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/zuazo/spamassassin-cookbook/compare/1.1.0...2.0.0
 [1.1.0]: https://github.com/zuazo/spamassassin-cookbook/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/zuazo/spamassassin-cookbook/compare/0.2.0...1.0.0
 [0.2.0]: https://github.com/zuazo/spamassassin-cookbook/compare/0.1.0...0.2.0
