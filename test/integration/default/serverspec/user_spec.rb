@@ -19,13 +19,15 @@
 
 require 'spec_helper'
 
-describe user('spamd') do
-  it { should exist }
-  it { should belong_to_group 'spamd' }
-  it { should have_home_directory '/var/lib/spamassassin' }
-  it { should have_login_shell '/bin/false' }
-end
+describe 'User' do
+  describe user('spamd') do
+    it { should exist }
+    it { should belong_to_group 'spamd' }
+    it { should have_home_directory '/var/lib/spamassassin' }
+    it { should have_login_shell '/bin/false' }
+  end
 
-describe group('spamd') do
-  it { should exist }
+  describe group('spamd') do
+    it { should exist }
+  end
 end
