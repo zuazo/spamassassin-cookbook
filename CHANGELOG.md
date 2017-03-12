@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - Prepare for Chef 13.
 - README: Add badges: docu, github, license, code climate, coveralls, inch-ci.
 - CHANGELOG: Follow "Keep a CHANGELOG".
+- Update RuboCop to `0.47` and fix new offenses.
 
 ### Removed
 - Drop Ruby `< 2.2` support.
