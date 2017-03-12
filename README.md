@@ -7,8 +7,8 @@ SpamAssassin Cookbook
 [![Cookbook Version](https://img.shields.io/cookbook/v/onddo-spamassassin.svg?style=flat)](https://supermarket.chef.io/cookbooks/onddo-spamassassin)
 [![Dependency Status](http://img.shields.io/gemnasium/zuazo/spamassassin-cookbook.svg?style=flat)](https://gemnasium.com/zuazo/spamassassin-cookbook)
 [![Code Climate](http://img.shields.io/codeclimate/github/zuazo/spamassassin-cookbook.svg?style=flat)](https://codeclimate.com/github/zuazo/spamassassin-cookbook)
-[![Build Status](http://img.shields.io/travis/zuazo/spamassassin-cookbook/2.0.0.svg?style=flat)](https://travis-ci.org/zuazo/spamassassin-cookbook)
-[![Coverage Status](http://img.shields.io/coveralls/zuazo/spamassassin-cookbook/2.0.0.svg?style=flat)](https://coveralls.io/r/zuazo/spamassassin-cookbook?branch=2.0.0)
+[![Build Status](http://img.shields.io/travis/zuazo/spamassassin-cookbook.svg?style=flat)](https://travis-ci.org/zuazo/spamassassin-cookbook)
+[![Coverage Status](http://img.shields.io/coveralls/zuazo/spamassassin-cookbook.svg?style=flat)](https://coveralls.io/r/zuazo/spamassassin-cookbook?branch=master)
 [![Inline docs](http://inch-ci.org/github/zuazo/spamassassin-cookbook.svg?branch=master&style=flat)](http://inch-ci.org/github/zuazo/spamassassin-cookbook)
 
 [Chef](https://www.chef.io/) cookbook to install and configure [SpamAssassin](http://spamassassin.apache.org/), a mail filter software to identify spam.
