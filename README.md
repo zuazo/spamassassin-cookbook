@@ -27,7 +27,8 @@ Please, [let us know](https://github.com/zuazo/spamassassin-cookbook/issues/new?
 
 ## Required Applications
 
-* Ruby `>= 1.9.3`
+* Chef `12` or higher.
+* Ruby `2.2` or higher.
 
 Attributes
 ==========

@@ -2,10 +2,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# More info at http://berkshelf.com/#the-berksfile
+
 source 'https://supermarket.chef.io'
 my_cookbook = 'onddo-spamassassin'
 
-# Helper to include a local cookbook from disk
+# Berkshelf helper to include a local cookbook from disk.
+#
+# @param name [String] cookbook name.
+# @param version [String] cookbook version requirement.
+# @param options [Hash] #cookbook method options.
+# return void
 def local_cookbook(name, version = '>= 0.0.0', options = {})
   cookbook(name, version, {
     path: "../../cookbooks/#{name}"
@@ -14,6 +21,7 @@ end
 
 metadata
 cookbook 'apt'
+cookbook 'freebsd'
 
 # Minitest Chef Handler
 # More info at https://github.com/calavera/minitest-chef-handler
