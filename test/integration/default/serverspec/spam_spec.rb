@@ -19,16 +19,6 @@
 
 require 'spec_helper'
 
-family = os[:family].downcase
-
-spamd =
-  case family
-  when 'debian', 'ubuntu'
-    '/usr/sbin/spamd'
-  else
-    'spamd'
-  end
-
 describe 'SpamAssassin' do
   let(:gtube) do
     'XJS*C4JDBQADN1.NSBN3*2IDNEN*GTUBE-STANDARD-ANTI-UBE-TEST-EMAIL*C.34X'
@@ -39,11 +29,11 @@ describe 'SpamAssassin' do
     its(:stderr) { should eq '' }
   end
 
-  describe process(spamd) do
-    it { should be_running }
+  describe command('pgrep spamd') do
+    its(:exit_status) { should eq 0 }
   end
 
-  it 'detects spam correctly' do # ,if: !::File.exist?('/etc/fedora-release') do
+  it 'detects spam correctly', if: !::File.exist?('/etc/fedora-release') do
     expect(command("echo '#{gtube}' | spamc").stdout)
       .to match(/X-Spam-Flag: +YES/i)
   end
