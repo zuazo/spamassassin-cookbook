@@ -20,7 +20,7 @@ env:
   - TESTS="integration[default-ubuntu-1504,verify]"
   - TESTS="integration[default-ubuntu-1604,verify]"
   - TESTS="integration[default-ubuntu-1610,verify]"
-  - TESTS="integration[default-fedora-25,verify]"
+  # - TESTS="integration[default-fedora-25,verify]"
 
 matrix:
   exclude:
@@ -46,8 +46,8 @@ matrix:
     env: TESTS="integration[default-ubuntu-1604,verify]"
   - rvm: 2.2
     env: TESTS="integration[default-ubuntu-1610,verify]"
-  - rvm: 2.2
-    env: TESTS="integration[default-fedora-25,verify]"
+  # - rvm: 2.2
+  #   env: TESTS="integration[default-fedora-25,verify]"
 
 before_install:
 - chef --version &> /dev/null || curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 1.2.22
