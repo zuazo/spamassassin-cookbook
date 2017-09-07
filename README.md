@@ -60,6 +60,7 @@ Attributes
 | `node['spamassassin']['conf']['bayes_auto_learn']`     | `true`                 | Whether SpamAssassin should automatically feed high-scoring mail.
 | `node['spamassassin']['conf']['bayes_ignore_headers']` | `[]`                   | Headers ignored by the naive-Bayesian-style classifier.
 | `node['spamassassin']['conf']['plugins']`              | `[]`                   | A hash to configure SpamAssassin plugins ([see the example below](#plugin-example)).
+| `node['spamassassin']['conf']['localrules']`           | `[]`                   | An array to configure local rules at the end of local.conf.
 
 ## Plugin Example
 
