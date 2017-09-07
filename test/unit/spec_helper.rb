@@ -17,9 +17,13 @@
 # limitations under the License.
 #
 
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', '..', 'libraries'))
+
 require 'chefspec'
 require 'chefspec/berkshelf'
 require 'should_not/rspec'
+
+require_relative 'support/coverage'
 
 RSpec.configure do |config|
   # Prohibit using the should syntax
@@ -31,7 +35,11 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   # --seed 1234
-  config.order = 'random'
+  # config.order = 'random'
+  # Library tests first (they are capitalized) to not interfere with coverage
+  config.register_ordering(:global) do |list|
+    list.sort_by(&:description)
+  end
 
   # ChefSpec configuration
   config.log_level = :fatal
@@ -42,4 +50,4 @@ RSpec.configure do |config|
   config.version = '12.04'
 end
 
-# at_exit { ChefSpec::Coverage.report! } # still in beta
+at_exit { ChefSpec::Coverage.report! }

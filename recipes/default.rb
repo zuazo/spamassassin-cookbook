@@ -90,7 +90,7 @@ when 'suse'
     )
     notifies :restart, "service[#{service_name}]"
   end
-when 'fedora', 'rhel', 'suse'
+when 'fedora', 'rhel'
   template '/etc/sysconfig/spamassassin' do
     source 'sysconfig_spamassassin.erb'
     owner 'root'

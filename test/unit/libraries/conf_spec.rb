@@ -1,7 +1,7 @@
 # encoding: UTF-8
 #
 # Author:: Xabier de Zuazo (<xabier@zuazo.org>)
-# Copyright:: Copyright (c) 2015 Onddo Labs, SL.
+# Copyright:: Copyright (c) 2017 Xabier de Zuazo
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,17 +17,24 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+require_relative '../spec_helper'
+require 'conf'
 
-describe 'User' do
-  describe user('spamd') do
-    it { should exist }
-    it { should belong_to_group 'spamd' }
-    it { should have_home_directory '/var/lib/spamassassin' }
-    it { should have_login_shell '/bin/false' }
-  end
+describe SpamAssassinCookbook::Conf, order: :random do
+  subject { SpamAssassinCookbook::Conf }
 
-  describe group('spamd') do
-    it { should exist }
-  end
+  describe '.value' do
+    {
+      true => '1',
+      false => '0',
+      '1' => '1',
+      '0' => '0',
+      1 => '1',
+      0 => '0'
+    }.each do |value, result|
+      it "returns #{result.inspect} for #{value.inspect}" do
+        expect(subject.value(value)).to eq(result)
+      end
+    end
+  end # .value
 end

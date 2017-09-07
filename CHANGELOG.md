@@ -1,66 +1,66 @@
-# CHANGELOG for onddo-spamassassin
+# Change Log
+All notable changes to the `onddo-spamassassin` cookbook will be documented in this file.
 
-This file is used to list changes made in each version of `onddo-spamassassin`.
+The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## v1.1.0 (2015-08-31)
+## [Unreleased]
+- ...
 
-* Add Oracle Linux support.
-* Install `deltarpm` package on Fedora.
-* metadata: Add `source_url` and `issues_url`.
-* Update contact information and links after migration.
+## [2.0.0] - 2017-03-12
+### Added
+- Metadata: Add `chef_version`.
+- Metadata: Remove grouping ([RFC-85](https://github.com/chef/chef-rfc/blob/8d47f1d0afa5a2313ed2010e0eda318edc28ba47/rfc085-remove-unused-metadata.md)).
+- Add documentation for libraries.
 
-* Documentation:
- * README:
-  * Use markdown tables.
-  * Improve description.
+### Changed
+- Prepare for Chef 13.
+- README: Add badges: docu, github, license, code climate, coveralls, inch-ci.
+- CHANGELOG: Follow "Keep a CHANGELOG".
+- Update RuboCop to `0.47` and fix new offenses.
 
-* Testing:
- * Gemfile: Update RuboCop to `0.33.0`.
- * Add a *Vagrantfile*.
- * Add a *Guardfile*.
- * Add a *.rubocop.yml* file.
- * Move ChefSpec tests to *test/unit*.
- * Rakefile: Add clean task.
- * .kitchen.yml: Update platforms.
- * Travis CI:
-  * Add Ruby `2.2`.
-  * Run test-kitchen in Travis with the `kitchen-in-travis` script.
+### Removed
+- Drop Ruby `< 2.2` support.
+- Drop Chef `< 12` support.
 
-## v1.0.0 (2015-04-29)
+## [1.1.0] - 2015-08-31
+### Added
+- Add Oracle Linux support.
+- Install `deltarpm` package on Fedora.
+- metadata: Add `source_url` and `issues_url`.
 
-* Move the attribute namespace from `node['onddo-spamassassin']` to `node['spamassassin']`, includes a deprecation message  (**breaking change**).
-* Add SUSE and OpenSUSE support.
-* Refactor and improve multiple platform support.
-* Fix all RuboCop offenses.
+### Changed
+- Update contact information and links after migration.
+- README: Use markdown tables and improve description.
 
-* Tests
- * Add ServerSpec integration tests.
- * Integrate unit tests with `should_not` gem.
- * Update unit tests to use `ChefSpec::SoloRunner`.
- * travis.yml: Use the new build env.
+## [1.0.0] - 2015-04-29
+### Added
+- Add SUSE and OpenSUSE support.
 
-## v0.2.0 (2014-09-22)
+### Changed
+- Move the attribute namespace from `node['onddo-spamassassin']` to `node['spamassassin']`, includes a deprecation message  (**breaking change**).
+- Refactor and improve multiple platform support.
 
-* `Gemfile` updates:
- * Berkshelf version 3.
- * Specify vagrant version.
- * Improved, added groups.
-* `README` & metadata: `trusted_networks` default value fixed.
-* `README`:
- * Added cookbook badge.
- * File separated in multiple files.
- * Added travis-ci and gamnasium badges.
-* Fix SpamAssassin daemon with systemd: fixes Fedora support.
-* *test/kitchen/cookbooks* directory moved to *test/cookbooks*.
-* Added Fedora and Amazon Linux support.
-* Added RedHat support.
-* `kitchen.yml` file updated.
-* Added `kitchen.cloud.yml` file
-* `Berksfile`: use source instead of site.
-* Added ChefSpec tests.
-* Added `travis.yml` file and a `Rakefile`.
-* `TODO` added tasks: *RuboCop* and namespace change.
+### Fixed
+- Fix all RuboCop offenses.
 
-## v0.1.0 (2013-06-09)
+## [0.2.0] - 2014-09-22
+### Added
+- Add Fedora and Amazon Linux support.
+- Add RedHat support.
+- `README`:
+  - Added cookbook badge.
+  - File separated in multiple files.
+  - Added travis-ci and gamnasium badges.
 
-* Initial release of `onddo-spamassassin`.
+### Fixed
+- `README` & metadata: `trusted_networks` default value fixed.
+- Fix SpamAssassin daemon with systemd: fixes Fedora support.
+
+## 0.1.0 - 2013-06-09
+- Initial release of `onddo-spamassassin`.
+
+[Unreleased]: https://github.com/zuazo/spamassassin-cookbook/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/zuazo/spamassassin-cookbook/compare/1.1.0...2.0.0
+[1.1.0]: https://github.com/zuazo/spamassassin-cookbook/compare/1.0.0...1.1.0
+[1.0.0]: https://github.com/zuazo/spamassassin-cookbook/compare/0.2.0...1.0.0
+[0.2.0]: https://github.com/zuazo/spamassassin-cookbook/compare/0.1.0...0.2.0

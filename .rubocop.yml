@@ -1,8 +1,12 @@
 AllCops:
   Exclude:
-  - '.kitchen'
+  - .kitchen
   Include:
-  - 'files/*/*.rb'
+  - files/*/*.rb
   - '**/*.rb.erb'
 FormatParameterMismatch:
   Enabled: false
+Metrics/BlockLength:
+  Exclude:
+  - test/unit/**/*_spec.rb
+  - test/integration/**/*_spec.rb

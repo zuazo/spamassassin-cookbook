@@ -1,7 +1,7 @@
 # encoding: UTF-8
 #
 # Author:: Xabier de Zuazo (<xabier@zuazo.org>)
-# Copyright:: Copyright (c) 2015 Onddo Labs, SL.
+# Copyright:: Copyright (c) 2014 Onddo Labs, SL.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,15 +19,22 @@
 
 require 'spec_helper'
 
-describe 'User' do
-  describe user('spamd') do
-    it { should exist }
-    it { should belong_to_group 'spamd' }
-    it { should have_home_directory '/var/lib/spamassassin' }
-    it { should have_login_shell '/bin/false' }
+describe 'SpamAssassin' do
+  let(:gtube) do
+    'XJS*C4JDBQADN1.NSBN3*2IDNEN*GTUBE-STANDARD-ANTI-UBE-TEST-EMAIL*C.34X'
   end
 
-  describe group('spamd') do
-    it { should exist }
+  describe command('which spamc') do
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq '' }
+  end
+
+  describe command('pgrep spamd') do
+    its(:exit_status) { should eq 0 }
+  end
+
+  it 'detects spam correctly', if: !::File.exist?('/etc/fedora-release') do
+    expect(command("echo '#{gtube}' | spamc").stdout)
+      .to match(/X-Spam-Flag: +YES/i)
   end
 end
