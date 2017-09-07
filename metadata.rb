@@ -26,7 +26,7 @@ description <<-EOH
 Installs and configures SpamAssassin, a mail filter software to identify spam.
 EOH
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '1.2.0001' # WiP
+version '2.1.0001' # WiP
 
 if respond_to?(:source_url)
   source_url 'https://github.com/zuazo/spamassassin-cookbook'
@@ -34,6 +34,8 @@ end
 if respond_to?(:issues_url)
   issues_url 'https://github.com/zuazo/spamassassin-cookbook/issues'
 end
+
+chef_version '>= 12' if respond_to?(:chef_version)
 
 supports 'amazon'
 supports 'centos'
@@ -47,22 +49,12 @@ supports 'ubuntu'
 
 recipe 'onddo-spamassassin::default', 'Installs SpamAssassin client and Daemon'
 
-replaces 'spamassassin'
-
-grouping 'spamassassin/spamc',
-         title: 'Spamd options',
-         description: 'SpamAssassin client options'
-
 attribute 'spamassassin/spamc/path',
           display_name: 'spamc path',
           description: 'SpamAssassin client binary path',
           calculated: true,
           type: 'string',
           required: 'optional'
-
-grouping 'spamassassin/spamd',
-         title: 'Spamd options',
-         description: 'SpamAssassin daemon options'
 
 attribute 'spamassassin/spamd/path',
           display_name: 'spamd path',
@@ -124,10 +116,6 @@ attribute 'spamassassin/spamd/nice',
           type: 'string',
           required: 'optional',
           default: 'nil'
-
-grouping 'spamassassin/conf',
-         title: 'Configuration options',
-         description: 'SpamAssassin configuration options (local.cf)'
 
 attribute 'spamassassin/conf/rewrite_headers',
           display_name: 'spam rewrite_headers',

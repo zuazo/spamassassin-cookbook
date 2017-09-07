@@ -1,7 +1,7 @@
 # encoding: UTF-8
 #
 # Author:: Xabier de Zuazo (<xabier@zuazo.org>)
-# Copyright:: Copyright (c) 2015 Onddo Labs, SL.
+# Copyright:: Copyright (c) 2017 Xabier de Zuazo
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,17 +17,19 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
-
-describe 'User' do
-  describe user('spamd') do
-    it { should exist }
-    it { should belong_to_group 'spamd' }
-    it { should have_home_directory '/var/lib/spamassassin' }
-    it { should have_login_shell '/bin/false' }
-  end
-
-  describe group('spamd') do
-    it { should exist }
+if ENV['TRAVIS']
+  require 'coveralls'
+  Coveralls.wear!
+else
+  require 'simplecov'
+  SimpleCov.start do
+    add_group 'Libraries', '/libraries'
+    add_group 'ChefSpec' do |src|
+      %r{/test/unit/(recipes|resources|providers|templates)}.match(src.filename)
+    end
+    add_group 'RSpec' do |src|
+      %r{/test/unit/(unit|functional|integration|libraries)}.match(src.filename)
+    end
+    add_group 'RSpec Support', '/test/unit/support'
   end
 end
