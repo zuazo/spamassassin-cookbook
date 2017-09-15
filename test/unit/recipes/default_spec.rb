@@ -79,8 +79,6 @@ describe 'onddo-spamassassin::default' do
       .with_owner('root')
       .with_group('root')
       .with_mode('00644')
-      .with_content('blacklist_from bad_sender1@example.com')
-      .with_content('blacklist_from bad_sender2@example.com')
   end
 
   it 'local.cf restarts spamassassin service' do
