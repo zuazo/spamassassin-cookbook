@@ -82,7 +82,6 @@ describe 'onddo-spamassassin::default' do
       .with_content('blacklist_from bad_sender1@example.com')
       .with_content('blacklist_from bad_sender2@example.com')
   end
-end
 
   it 'local.cf restarts spamassassin service' do
     resource = chef_run.template('/etc/mail/spamassassin/local.cf')
