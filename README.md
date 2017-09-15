@@ -84,6 +84,22 @@ node.default['spamassassin']['conf']['plugins']['shortcircuit'] = [
 ]
 ```
 
+## Local Rules Example
+
+Say you want to add the following rules to local.cf to blacklist some senders
+
+```
+blacklist_from bad_sender1@example.com
+blacklist_from bad_sender2@example.com
+```
+
+```ruby
+node.default['spamassassin']['conf']['localrules'] = [
+  'blacklist_from bad_sender1@example.com',
+  'blacklist_from bad_sender2@example.com'
+]
+```
+
 Recipes
 =======
 

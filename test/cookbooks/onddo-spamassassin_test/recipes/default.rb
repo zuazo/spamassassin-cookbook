@@ -36,4 +36,10 @@ node.default['spamassassin']['conf']['plugins']['shortcircuit'] =
     'BAYES_00' => 'ham'
   }]
 
+node.default['spamassassin']['conf']['localrules'] = 
+  [
+    'blacklist_from bad_sender1@example.com',
+    'blacklist_from bad_sender2@example.com'
+  ]
+  
 include_recipe 'onddo-spamassassin'
