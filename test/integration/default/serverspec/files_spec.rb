@@ -62,5 +62,17 @@ describe 'Files' do
     it { should be_grouped_into 'root' }
     it { should be_readable.by_user('spamd') } if runuser?
     it { should_not be_writable.by_user('spamd') } if runuser?
+    it { should contain 'shortcircuit ALL_TRUSTED on' }
+    it { should contain 'shortcircuit BAYES_00 ham' }
+    it { should contain 'shortcircuit BAYES_99 spam' }
+    it { should contain 'shortcircuit SUBJECT_IN_BLACKLIST on' }
+    it { should contain 'shortcircuit SUBJECT_IN_WHITELIST on' }
+    it { should contain 'shortcircuit USER_IN_ALL_SPAM_TO on' }
+    it { should contain 'shortcircuit USER_IN_BLACKLIST on' }
+    it { should contain 'shortcircuit USER_IN_BLACKLIST_TO on' }
+    it { should contain 'shortcircuit USER_IN_DEF_WHITELIST on' }
+    it { should contain 'shortcircuit USER_IN_WHITELIST on' }
+    it { should contain 'blacklist_from bad_sender1@example.com' }
+    it { should contain 'blacklist_from bad_sender2@example.com' }
   end
 end

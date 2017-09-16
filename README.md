@@ -60,6 +60,7 @@ Attributes
 | `node['spamassassin']['conf']['bayes_auto_learn']`     | `true`                 | Whether SpamAssassin should automatically feed high-scoring mail.
 | `node['spamassassin']['conf']['bayes_ignore_headers']` | `[]`                   | Headers ignored by the naive-Bayesian-style classifier.
 | `node['spamassassin']['conf']['plugins']`              | `[]`                   | A hash to configure SpamAssassin plugins ([see the example below](#plugin-example)).
+| `node['spamassassin']['conf']['localrules']`           | `[]`                   | An array to configure local rules at the end of local.conf.
 
 ## Plugin Example
 
@@ -80,6 +81,22 @@ node.default['spamassassin']['conf']['plugins']['shortcircuit'] = [
     'BAYES_99' => 'spam',
     'BAYES_00' => 'ham'
   }
+]
+```
+
+## Local Rules Example
+
+Say you want to add the following rules to local.cf to blacklist some senders
+
+```
+blacklist_from bad_sender1@example.com
+blacklist_from bad_sender2@example.com
+```
+
+```ruby
+node.default['spamassassin']['conf']['localrules'] = [
+  'blacklist_from bad_sender1@example.com',
+  'blacklist_from bad_sender2@example.com'
 ]
 ```
 

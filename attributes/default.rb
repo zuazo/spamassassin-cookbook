@@ -53,3 +53,4 @@ default['spamassassin']['spamd']['options'] = [
 ]
 default['spamassassin']['spamd']['pidfile'] = '/var/run/spamd.pid'
 default['spamassassin']['spamd']['nice'] = nil
+default['spamassassin']['conf']['localrules'] = []

@@ -87,3 +87,8 @@ ifplugin Mail::SpamAssassin::Plugin::<%= plugin.capitalize %>
 -%>
 endif # ifplugin Mail::SpamAssassin::Plugin::<%= plugin.capitalize %>
 <% end -%>
+
+# Additional local rules
+<% @conf['localrules'].each do |rule| -%>
+<%= rule %>
+<% end %>
